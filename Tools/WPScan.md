@@ -83,15 +83,15 @@ wpscan --url https://example.com --enumerate u,p --format json --output wpscan-r
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
 flowchart TD
-    A[Target WordPress Site] --> B[Run WPScan]
-    B --> C[Enumerate Users, Plugins & Themes]
-    C --> D[Identify Potential Vulnerable Components]
-    D --> E[Lookup Vulnerabilities (WPVulnDB)]
-    E --> F{Vulnerable Component Found?}
-    F -->|Yes| G[Manually Validate Findings]
-    F -->|No| H[Extend Scan Configuration]
+    A["Target WordPress Site"] --> B["Run WPScan"]
+    B --> C["Enumerate Users, Plugins & Themes"]
+    C --> D["Identify Potential Vulnerable Components"]
+    D --> E["Lookup Vulnerabilities (WPVulnDB)"]
+    E --> F{"Vulnerable Component Found?"}
+    F -->|Yes| G["Manually Validate Findings"]
+    F -->|No| H["Extend Scan Configuration"]
     H --> C
-    G --> I[Generate Report & Remediation Plan]
+    G --> I["Generate Report & Remediation Plan"]
 
     classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
     classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;

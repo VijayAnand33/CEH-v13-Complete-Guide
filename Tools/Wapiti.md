@@ -72,15 +72,15 @@ wapiti -u http://example.com -m xss,sqli -o findings.html
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
 flowchart TD
-	A[Select Target Site] --> B[Run Wapiti Crawler]
-	B --> C[Discover Parameters & Inputs]
-	C --> D[Run Detection Modules (XSS, SQLi, etc.)]
-	D --> E[Collect Suspicious Responses]
-	E --> F{Findings Suspicious?}
-	F -->|Yes| G[Generate Report]
-	F -->|No| H[Refine Scan or Parameters]
+	A["Select Target Site"] --> B["Run Wapiti Crawler"]
+	B --> C["Discover Parameters & Inputs"]
+	C --> D["Run Detection Modules (XSS, SQLi, etc.)"]
+	D --> E["Collect Suspicious Responses"]
+	E --> F{"Findings Suspicious?"}
+	F -->|Yes| G["Generate Report"]
+	F -->|No| H["Refine Scan or Parameters"]
 	H --> C
-	G --> I[Manually Validate Findings]
+	G --> I["Manually Validate Findings"]
 
 	classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
 	classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
