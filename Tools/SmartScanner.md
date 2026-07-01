@@ -53,6 +53,7 @@ SmartScanner is typically provided as part of a penetration testing environment 
 
 ## Typical Workflow
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
 flowchart TD
 	A[Select Target Website] --> B[Configure Scan]
 	B --> C[Crawl Website]
@@ -60,6 +61,14 @@ flowchart TD
 	D --> E[Detect Potential Vulnerabilities]
 	E --> F[Generate Security Report]
 	F --> G[Manually Validate Findings]
+
+	classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+	classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+	classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+	class A start;
+	class B,C,D,E,F process;
+	class G endNode;
 ```
 
 ---

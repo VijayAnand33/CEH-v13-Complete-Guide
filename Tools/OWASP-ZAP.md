@@ -73,7 +73,7 @@ or launch it from the applications menu.
 
 ## Typical Workflow
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#E3F2FD', 'primaryTextColor': '#0D47A1', 'primaryBorderColor': '#1565C0', 'lineColor': '#546E7A', 'secondaryColor': '#E8F5E9', 'tertiaryColor': '#F3E5F5'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EAF2FB', 'primaryTextColor': '#0D1B2A', 'primaryBorderColor': '#145DA0', 'lineColor': '#1B98E0', 'secondaryColor': '#F1F6F9', 'tertiaryColor': '#A6D8FF'}}}%%
 flowchart TD
 	A[Launch OWASP ZAP] --> B[Configure Browser Proxy]
 	B --> C[Browse Target Application]
@@ -84,11 +84,11 @@ flowchart TD
 
 	classDef start fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
 	classDef process fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1;
-	classDef end fill:#F3E5F5,stroke:#6A1B9A,stroke-width:2px,color:#4A148C;
+	classDef endNode fill:#F3E5F5,stroke:#6A1B9A,stroke-width:2px,color:#4A148C;
 
 	class A start;
 	class B,C,D,E,F process;
-	class G end;
+	class G endNode;
 ```
 
 ---

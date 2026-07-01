@@ -73,7 +73,7 @@
  ## Typical Workflow
 
  ```mermaid
- %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#E3F2FD', 'primaryTextColor': '#0D47A1', 'primaryBorderColor': '#1565C0', 'lineColor': '#546E7A', 'secondaryColor': '#E8F5E9', 'tertiaryColor': '#F3E5F5'}}}%%
+ %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
  flowchart TD
 	 A[Define Objective] --> B[Prompt ShellGPT]
 	 B --> C[Receive Commands / Guidance]
@@ -86,15 +86,15 @@
 	 H --> I[Document Findings]
 	 I --> J[End]
 
-	 classDef start fill:#E8F5E9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
-	 classDef process fill:#E3F2FD,stroke:#1565C0,stroke-width:1.5px,color:#0D47A1;
-	 classDef decision fill:#FFECB3,stroke:#FF9800,color:#BF360C;
-	 classDef end fill:#F3E5F5,stroke:#6A1B9A,stroke-width:2px,color:#4A148C;
+	 classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+	 classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+	 classDef decision fill:#FFF4CC,stroke:#E09F3E,color:#BF360C;
+	 classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
 
 	 class A start;
-	 class B,C,D,F,H,I process;
+	 class B,C,D,F,G,H,I process;
 	 class E decision;
-	 class J end;
+	 class J endNode;
  ```
 
  ---
