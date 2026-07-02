@@ -58,57 +58,40 @@ sqlmap -u "http://example.com/profile.php?id=1"
 
 ## Commonly Used Options
 
-> **Copilot Task**
->
-> Create a professional GitHub Markdown table explaining the following sqlmap options:
->
-> - `-u`
-> - `--cookie`
-> - `--dbs`
-> - `-D`
-> - `--tables`
-> - `-T`
-> - `--dump`
-> - `--os-shell`
-> - `--batch`
->
-> Include a short description and purpose for each option.
+| Option | Purpose | Description |
+|---|---|---|
+| `-u` | Target URL | Specifies the target web application's URL or vulnerable parameter string for testing. |
+| `--cookie` | Session Cookie | Sends an authenticated session cookie with requests, useful when testing login-protected areas. |
+| `--dbs` | List Databases | Enumerates all available databases on the target DBMS after a SQL Injection vulnerability is confirmed. |
+| `-D` | Select Database | Chooses a specific database to target for enumeration or extraction. |
+| `--tables` | List Tables | Enumerates all tables within the selected database. Requires `-D <database>`. |
+| `-T` | Select Table | Chooses a specific table within the selected database for data extraction. |
+| `--dump` | Dump Data | Extracts data from the selected table or from all tables when no specific table is given. |
+| `--os-shell` | Operating System Shell | Attempts to open an interactive operating system shell on the compromised database server, if supported. |
+| `--batch` | Non-interactive Mode | Runs sqlmap without prompting for confirmation, using default answers for all questions. |
 
 ---
 
 ## Typical Workflow
 
-> **Copilot Task**
->
-> Generate a GitHub-compatible Mermaid flowchart for the following workflow:
->
-> Target URL
->
-> ↓
->
-> Detect SQL Injection
->
-> ↓
->
-> Fingerprint Database
->
-> ↓
->
-> Enumerate Databases
->
-> ↓
->
-> Enumerate Tables
->
-> ↓
->
-> Extract Sensitive Data
->
-> ↓
->
-> Obtain OS Shell (if applicable)
->
-> Return only Mermaid markdown.
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target URL"] --> B["Detect SQL Injection"]
+    B --> C["Fingerprint Database"]
+    C --> D["Enumerate Databases"]
+    D --> E["Enumerate Tables"]
+    E --> F["Extract Sensitive Data"]
+    F --> G["Obtain OS Shell (if applicable)"]
+
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E,F process;
+    class G endNode;
+```
 
 ---
 
