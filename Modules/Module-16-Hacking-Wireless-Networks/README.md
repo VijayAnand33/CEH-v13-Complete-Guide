@@ -75,6 +75,13 @@ After completing this module, I was able to:
 
 # Labs Covered
 
+| Lab | Description |
+|------|-------------|
+| Lab 1 | Perform Wireless Traffic Analysis |
+| Lab 2 | Perform Wireless Attacks |
+
+--- 
+
 ## Lab 1 - Perform Wireless Traffic Analysis
 
 ### Objective
@@ -254,3 +261,5 @@ Wireless networks should always use modern security protocols such as WPA3 whene
 # My Reflection
 
 This module provided a practical introduction to wireless network security and wireless penetration testing. I learned how wireless packet analysis supports reconnaissance using Wireshark and how Aircrack-ng evaluates WPA2 password strength through offline dictionary attacks against captured authentication handshakes. Most importantly, I understood that strong wireless security depends not only on encryption standards such as WPA2 or WPA3 but also on strong passphrases and secure authentication mechanisms.
+
+---

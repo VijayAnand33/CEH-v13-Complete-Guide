@@ -84,6 +84,8 @@ After completing this module, I was able to:
 
 To identify active hosts within a target network using multiple Nmap host discovery techniques and understand how different discovery methods determine host availability before subsequent network scanning activities.
 
+---
+
 ## Background
 
 Host discovery is the first stage of active network scanning. After gathering target information during reconnaissance, penetration testers must identify which systems are currently online before performing port scanning or service enumeration. Nmap provides several host discovery techniques that leverage different network protocols, allowing live hosts to be detected even when certain packet types are restricted by firewalls or security devices.
@@ -98,6 +100,8 @@ By comparing multiple discovery methods, ethical hackers can improve reconnaissa
 
 - [Nmap](../../Tools/Nmap.md)
 
+---
+
 ### Activity Performed
 
 Nmap was used to perform host discovery against the target network using multiple scanning techniques, including ARP Ping Scan, UDP Ping Scan, ICMP Echo Ping Scan, ICMP Echo Ping Sweep, and ICMP Timestamp Ping Scan. Each technique transmitted a different type of probe packet to determine whether the target system was active and reachable.
@@ -106,6 +110,8 @@ The ARP Ping Scan successfully identified the target host within the local netwo
 
 The host discovery results established the foundation for subsequent port scanning, service detection, operating system fingerprinting, and vulnerability assessment activities performed in later stages of the network scanning process.
 
+---
+
 ### Observations
 
 - Successfully identified the Windows Server 2022 target host (10.10.1.22) as active within the target network.
@@ -113,6 +119,8 @@ The host discovery results established the foundation for subsequent port scanni
 - Discovered multiple live systems within the specified IP address range using an ICMP Echo Ping Sweep.
 - Observed that different host discovery techniques rely on different network protocols and response types.
 - Demonstrated that alternative discovery methods can be used when specific probe packets are filtered or restricted by firewalls and network security devices.
+
+---
 
 ### Figures
 
@@ -132,9 +140,13 @@ The host discovery results established the foundation for subsequent port scanni
 
 **Figure 1.3:** ICMP Timestamp Ping Scan verified host availability by requesting timestamp information from the target, illustrating an alternative host discovery technique when standard ICMP Echo requests are unavailable or filtered.
 
+---
+
 ### Learning Outcome
 
 This task demonstrated how Nmap employs multiple host discovery techniques to accurately identify reachable systems within a network. Understanding the strengths and limitations of different discovery methods establishes the foundation for subsequent port scanning, service enumeration, operating system fingerprinting, and vulnerability assessment activities.
+
+---
 
 ### Attack Flow
 
@@ -156,15 +168,21 @@ flowchart LR
     style G fill:#2563eb,color:#fff,stroke:#60a5fa
 ```
 
+---
+
 ### Overall Learning Outcome
 
 This lab demonstrated how multiple Nmap host discovery techniques can be used to accurately identify active systems within a target network using different network protocols. By comparing ARP, UDP, and ICMP-based discovery methods, it reinforced the importance of host discovery as the foundation for effective network scanning, service enumeration, and subsequent penetration testing activities.
+
+---
 
 # Lab 2: Perform Port and Service Discovery
 
 ## Objective
 
 To identify open ports, running services, service versions, and operating system information on target hosts using various Nmap scanning techniques. This lab demonstrated how different scan types provide unique insights into a target's attack surface while also highlighting the effects of firewall filtering on scan results.
+
+---
 
 ## Background
 
@@ -180,6 +198,8 @@ Understanding the strengths and limitations of each scan type enables ethical ha
 
 - [Nmap](../../Tools/Nmap.md)
 
+---
+
 ### Activity Performed
 
 Nmap was used to perform multiple port and service discovery techniques against the target Windows Server 2022 system. The assessment began with a TCP Connect Scan to identify open TCP ports and the services listening on them. Additional scan types, including TCP SYN (Stealth) Scan, Xmas Scan, TCP Maimon Scan, ACK Scan, and UDP Scan, were performed to observe how different packet types interact with the target system and its firewall.
@@ -187,6 +207,8 @@ Nmap was used to perform multiple port and service discovery techniques against 
 Service Version Detection was then used to enumerate the versions of services running on the discovered ports, providing valuable information for vulnerability assessment. Finally, an Aggressive Scan was executed to combine operating system detection, version detection, default script scanning, and traceroute into a single comprehensive scan, producing a detailed profile of the target host.
 
 Throughout the exercise, the impact of Windows Defender Firewall on scan results was observed, illustrating how firewall configurations influence port states and scan responses.
+
+---
 
 ### Observations
 
@@ -197,6 +219,8 @@ Throughout the exercise, the impact of Windows Defender Firewall on scan results
 - Detected service versions running on exposed ports.
 - Gathered operating system details, device information, and network characteristics through the Aggressive Scan.
 - Understood how comprehensive scan results assist in identifying potential attack vectors during penetration testing.
+
+---
 
 ### Figures
 
@@ -222,9 +246,13 @@ Throughout the exercise, the impact of Windows Defender Firewall on scan results
 
 **Figure 2.4:** Aggressive Scan consolidated operating system detection, service enumeration, default script execution, and host information into a comprehensive network profile of the target system.
 
+---
+
 ### Learning Outcome
 
 This task demonstrated how different Nmap scanning techniques provide varying levels of information about a target system, from basic port discovery to comprehensive operating system and service enumeration. It also reinforced the importance of selecting appropriate scanning methods based on network conditions, firewall configurations, and assessment objectives.
+
+---
 
 ### Attack Flow
 
@@ -246,15 +274,21 @@ flowchart LR
     style G fill:#2563eb,color:#fff,stroke:#60a5fa
 ```
 
+---
+
 ### Overall Learning Outcome
 
 This lab demonstrated how Nmap can be used to perform comprehensive port and service discovery using multiple scanning techniques. By comparing different scan types and analyzing their results, the lab highlighted how penetration testers gather detailed information about target systems, identify exposed services, detect operating systems, and evaluate firewall behavior to build an accurate attack surface for subsequent security assessments.
+
+---
 
 # Lab 3: Perform OS Discovery
 
 ## Objective
 
 To identify the operating system and host information of a target machine using Nmap's operating system detection capabilities and the Nmap Scripting Engine (NSE). This lab demonstrated how OS fingerprinting and NSE scripts can be used to gather detailed system information for reconnaissance and vulnerability assessment.
+
+---
 
 ## Background
 
@@ -270,11 +304,15 @@ By combining aggressive scanning, OS fingerprinting, and NSE scripts, security p
 
 - [Nmap](../../Tools/Nmap.md)
 
+---
+
 ### Activity Performed
 
 Nmap was used to identify the operating system and system information of the target Windows Server 2022 machine using multiple discovery techniques. An Aggressive Scan was first performed to collect open ports, running services, service versions, operating system details, and host script results in a single scan. A dedicated OS Detection scan was then executed to fingerprint the target operating system based on network characteristics and protocol behavior.
 
 Finally, the Nmap Scripting Engine (NSE) was used with the `smb-os-discovery.nse` script to retrieve additional information over the SMB protocol, including the operating system, computer name, NetBIOS name, domain, workgroup, and system time. These techniques demonstrated how Nmap combines active fingerprinting with protocol-specific scripts to produce detailed reconnaissance results.
+
+---
 
 ### Observations
 
@@ -284,6 +322,8 @@ Finally, the Nmap Scripting Engine (NSE) was used with the `smb-os-discovery.nse
 - Collected SMB-related system information using the Nmap Scripting Engine.
 - Observed that NSE scripts extend Nmap's capabilities by extracting detailed host information through supported network services.
 - Verified that operating system fingerprinting provides valuable intelligence for vulnerability analysis and exploitation planning.
+
+---
 
 ### Figures
 
@@ -303,9 +343,13 @@ Finally, the Nmap Scripting Engine (NSE) was used with the `smb-os-discovery.nse
 
 **Figure 3.3:** The `smb-os-discovery.nse` script extracted detailed host information, including the operating system, computer name, NetBIOS information, and domain details through the SMB service.
 
+---
+
 ### Learning Outcome
 
 This task demonstrated how Nmap combines operating system fingerprinting with the Nmap Scripting Engine to collect detailed host information during network reconnaissance. The ability to accurately identify operating systems and system attributes provides valuable intelligence for vulnerability assessment and subsequent penetration testing activities.
+
+---
 
 ### Attack Flow
 
@@ -325,15 +369,21 @@ flowchart LR
     style F fill:#2563eb,color:#fff,stroke:#60a5fa
 ```
 
+---
+
 ### Overall Learning Outcome
 
 This lab demonstrated how Nmap and the Nmap Scripting Engine can be used to identify operating systems and gather detailed host information through active fingerprinting and protocol-specific scripts. The collected intelligence enhances situational awareness, supports vulnerability assessment, and helps penetration testers build an accurate profile of the target environment before attempting further exploitation.
+
+---
 
 # Lab 4: Scan beyond IDS and Firewall
 
 ## Objective
 
 To perform network scanning while bypassing intrusion detection systems (IDS) and firewall mechanisms using various Nmap evasion techniques. This lab demonstrated how packet fragmentation, source port manipulation, MTU modification, and IP address decoys can reduce the effectiveness of network filtering and detection.
+
+---
 
 ## Background
 
@@ -350,6 +400,8 @@ Understanding these techniques enables penetration testers to evaluate the effec
 - [Nmap](../../Tools/Nmap.md)
 - [Wireshark](../../Tools/Wireshark.md)
 
+---
+
 ### Activity Performed
 
 Nmap was used to perform network scans against the target Windows 11 system while applying multiple IDS and firewall evasion techniques. Packet fragmentation was used to divide probe packets into smaller fragments, reducing the likelihood of inspection by poorly configured security devices. Source port manipulation was then performed by sending scan traffic from a trusted source port commonly permitted by firewall rules.
@@ -357,6 +409,8 @@ Nmap was used to perform network scans against the target Windows 11 system whil
 Additional evasion methods included modifying the Maximum Transmission Unit (MTU) to transmit smaller packets and using IP address decoys to conceal the true origin of the scan among multiple spoofed addresses. Throughout the assessment, Wireshark captured the network traffic on the target system, allowing each evasion technique to be analyzed and verified.
 
 These techniques demonstrated how changes to packet structure and source information can influence the effectiveness of network security controls while still allowing reconnaissance activities to succeed.
+
+---
 
 ### Observations
 
@@ -366,6 +420,8 @@ These techniques demonstrated how changes to packet structure and source informa
 - Confirmed that source port manipulation used TCP port 80 during scanning.
 - Observed multiple spoofed source IP addresses generated during the decoy scan.
 - Understood how various Nmap evasion techniques attempt to reduce IDS and firewall visibility.
+
+---
 
 ### Figures
 
@@ -391,9 +447,13 @@ These techniques demonstrated how changes to packet structure and source informa
 
 **Figure 4.4:** Wireshark captured multiple spoofed source IP addresses generated during the decoy scan, demonstrating how Nmap conceals the actual scanning host among randomly generated decoys.
 
+---
+
 ### Learning Outcome
 
 This task demonstrated how Nmap's evasion capabilities can modify packet characteristics and source information to reduce the effectiveness of intrusion detection systems and firewall filtering. Understanding these techniques provides valuable insight into both offensive reconnaissance strategies and the defensive measures required to detect sophisticated network scans.
+
+---
 
 ### Attack Flow
 
@@ -413,15 +473,21 @@ flowchart LR
     style F fill:#2563eb,color:#fff,stroke:#60a5fa
 ```
 
+---
+
 ### Overall Learning Outcome
 
 This lab demonstrated how Nmap employs multiple packet manipulation and traffic obfuscation techniques to evade firewall and intrusion detection mechanisms during network scanning. By combining packet fragmentation, source port manipulation, MTU modification, and IP address decoys, the assessment highlighted both the offensive value of scan evasion techniques and the importance of properly configured security controls for detecting advanced reconnaissance activities.
+
+---
 
 # Lab 5: Perform Network Scanning using Various Scanning Tools
 
 ## Objective
 
 To perform network scanning using the Metasploit Framework in order to identify active hosts, open ports, running services, and operating system information within a target network. This lab demonstrated how Metasploit integrates scanning modules to automate network reconnaissance and collect intelligence for subsequent security assessments.
+
+---
 
 ## Background
 
@@ -438,6 +504,8 @@ By combining Nmap with Metasploit's auxiliary scanners, security professionals c
 - [Metasploit](../../Tools/Metasploit.md)
 - [Nmap](../../Tools/Nmap.md)
 
+---
+
 ### Activity Performed
 
 The Metasploit Framework was used to perform network reconnaissance against the target subnet. Initially, an Nmap scan was executed from within the Metasploit console to discover active hosts, enumerate open ports, identify running services, and detect operating systems across the network. The scan results were exported in XML format for future analysis.
@@ -445,6 +513,8 @@ The Metasploit Framework was used to perform network reconnaissance against the 
 Metasploit's auxiliary scanning modules were then used to perform specialized reconnaissance activities. The SYN Port Scanner identified hosts exposing TCP port 80, while the TCP Port Scanner enumerated open TCP ports on the target Windows Server 2022 system. Finally, the SMB Version Scanner queried systems exposing SMB services to determine their operating system and SMB implementation details.
 
 These activities demonstrated how Metasploit extends traditional network scanning by providing modular reconnaissance capabilities that integrate seamlessly with penetration testing workflows.
+
+---
 
 ### Observations
 
@@ -454,6 +524,8 @@ These activities demonstrated how Metasploit extends traditional network scannin
 - Identified open TCP ports on the Windows Server 2022 target.
 - Retrieved operating system and SMB version information from hosts exposing SMB services.
 - Observed that Metasploit auxiliary modules provide targeted scanning capabilities for specific reconnaissance objectives.
+
+---
 
 ### Figures
 
@@ -479,9 +551,13 @@ These activities demonstrated how Metasploit extends traditional network scannin
 
 **Figure 5.4:** The SMB Version Scanner identified the operating system and SMB implementation of target hosts by querying exposed SMB services.
 
+---
+
 ### Learning Outcome
 
 This task demonstrated how Metasploit can be used as a reconnaissance platform by combining Nmap with specialized auxiliary scanning modules. The collected information provides valuable intelligence for vulnerability assessment, exploit selection, and subsequent penetration testing activities.
+
+---
 
 ### Attack Flow
 
@@ -501,15 +577,21 @@ flowchart LR
     style F fill:#2563eb,color:#fff,stroke:#60a5fa
 ```
 
+---
+
 ### Overall Learning Outcome
 
 This lab demonstrated how the Metasploit Framework can be used beyond exploitation to perform comprehensive network reconnaissance. By leveraging Nmap and Metasploit's auxiliary scanning modules, detailed information about hosts, open ports, services, and operating systems was collected, providing a strong foundation for vulnerability analysis and subsequent penetration testing activities.
+
+---
 
 # Lab 6: Perform Network Scanning using AI
 
 ## Objective
 
 To perform network scanning and reconnaissance using ShellGPT by generating AI-assisted commands for host discovery, port scanning, service enumeration, operating system detection, and scan automation. This lab demonstrated how artificial intelligence can simplify network reconnaissance while leveraging traditional security tools such as Nmap, hping3, and Metasploit.
+
+---
 
 ## Background
 
@@ -527,6 +609,8 @@ This approach enables penetration testers to focus on interpreting results rathe
 - [Nmap](../../Tools/Nmap.md)
 - [Metasploit](../../Tools/Metasploit.md)
 
+---
+
 ### Activity Performed
 
 ShellGPT was configured to generate shell commands for performing various network scanning activities using natural language prompts. AI-generated commands were used to perform host discovery, ICMP scanning, ACK scanning, port scanning, stealth scanning, XMAS scanning, operating system detection, service enumeration, and Metasploit-based reconnaissance.
@@ -534,6 +618,8 @@ ShellGPT was configured to generate shell commands for performing various networ
 ShellGPT also automated multi-stage reconnaissance workflows by generating commands that stored discovered hosts in text files, scanned those hosts using Nmap, extracted service information, and performed operating system discovery through the Nmap Scripting Engine. Finally, ShellGPT generated a Python automation script capable of performing comprehensive network scanning and vulnerability assessment against multiple hosts.
 
 Throughout the exercise, ShellGPT acted as an intelligent command-generation assistant while Nmap, Metasploit, and other security tools performed the actual reconnaissance tasks.
+
+---
 
 ### Observations
 
@@ -543,6 +629,8 @@ Throughout the exercise, ShellGPT acted as an intelligent command-generation ass
 - Automated multi-stage reconnaissance workflows using generated scripts.
 - Observed that ShellGPT significantly reduced manual command construction while maintaining compatibility with standard penetration testing tools.
 - Demonstrated how AI can improve efficiency without replacing established cybersecurity tools.
+
+---
 
 ### Figures
 
@@ -566,6 +654,8 @@ Throughout the exercise, ShellGPT acted as an intelligent command-generation ass
 
 This task demonstrated how ShellGPT enhances penetration testing by generating accurate security commands through natural language interaction. Rather than replacing traditional security tools, AI improved productivity by automating command generation, repetitive reconnaissance tasks, and multi-stage scanning workflows.
 
+---
+
 ### Attack Flow
 
 ```mermaid
@@ -583,6 +673,8 @@ flowchart LR
     style E fill:#059669,color:#fff,stroke:#10b981
     style F fill:#2563eb,color:#fff,stroke:#60a5fa
 ```
+
+---
 
 ### Overall Learning Outcome
 

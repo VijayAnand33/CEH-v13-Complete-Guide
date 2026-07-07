@@ -302,9 +302,13 @@ flowchart TD
     class G endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated how internet research services simplify the collection of publicly available information during passive reconnaissance. By analyzing domain infrastructure, DNS records, subdomains, and network relationships, I learned how ethical hackers build comprehensive reconnaissance profiles that support subsequent penetration testing activities.
+
+---
 
 ## Lab 3 - Perform Footprinting Through Social Networking Sites
 
@@ -381,9 +385,13 @@ flowchart TD
     class F endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated how social networking platforms serve as valuable sources of publicly available intelligence during footprinting. By using Sherlock, I learned how ethical hackers efficiently identify online profiles that contribute to comprehensive Open Source Intelligence gathering and support subsequent security assessments.
+
+---
 
 ## Lab 4 - Perform Whois Footprinting
 
@@ -461,9 +469,13 @@ flowchart TD
     class F endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated how Whois services provide valuable domain registration intelligence during the footprinting phase of ethical hacking. By analyzing publicly available registration records, I learned how ethical hackers identify infrastructure details that contribute to building a comprehensive reconnaissance profile.
+
+---
 
 ## Lab 5 - Perform DNS Footprinting
 
@@ -558,9 +570,13 @@ flowchart TD
     class F endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated how publicly available DNS records provide valuable intelligence during the footprinting phase of ethical hacking. By querying DNS information using command-line and online tools, I learned how ethical hackers identify domain infrastructure, authoritative name servers, and IP address mappings that support comprehensive reconnaissance activities.
+
+---
 
 ## Lab 6 - Perform Network Footprinting
 
@@ -651,6 +667,8 @@ flowchart TD
 
 This lab demonstrated how tracerouting utilities reveal network routing paths and intermediate infrastructure during the footprinting phase of ethical hacking. By analyzing network hops from both Windows and Linux environments, I learned how ethical hackers gather valuable network topology information that supports comprehensive reconnaissance.
 
+---
+
 ## Lab 7 - Perform Email Footprinting
 
 ### Objective
@@ -735,9 +753,13 @@ flowchart TD
     class F endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated how email headers provide valuable intelligence during the footprinting phase of ethical hacking. By analyzing routing information, mail servers, and Network Whois records, I learned how ethical hackers trace email communications and gather infrastructure details that support comprehensive reconnaissance and security investigations.
+
+---
 
 ## Lab 8 - Perform Footprinting using Various Footprinting Tools
 
@@ -831,9 +853,13 @@ flowchart TD
     class F endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated how Recon-ng automates Open Source Intelligence gathering by integrating host enumeration, personnel information collection, and reporting into a unified reconnaissance framework. I learned how automated reconnaissance tools improve the efficiency and organization of footprinting activities while supporting comprehensive security assessments.
+
+---
 
 ## Lab 9 - Perform Footprinting using AI
 
@@ -928,9 +954,13 @@ flowchart TD
     class F endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated how AI-powered assistants can improve the efficiency of footprinting by automating command generation and reconnaissance workflows. I learned that ShellGPT enhances traditional Open Source Intelligence techniques by simplifying interactions with multiple security tools while emphasizing the importance of human expertise to validate results and make informed security decisions.
+
+---
 
 # Key Takeaways
 
@@ -973,3 +1003,5 @@ Organizations should minimize publicly exposed information that could assist att
 # My Reflection
 
 This module provided a strong foundation for understanding the reconnaissance phase of ethical hacking. I learned that successful penetration testing begins with collecting accurate and relevant information rather than immediately attempting exploitation. Through practical exercises, I explored multiple footprinting techniques, including search engine reconnaissance, internet research services, DNS analysis, Whois lookups, social media intelligence, network tracing, email analysis, automated reconnaissance frameworks, and AI-assisted footprinting. The module reinforced the importance of Open Source Intelligence (OSINT) and demonstrated how seemingly harmless public information can reveal valuable insights about an organization's infrastructure. Overall, this module strengthened my understanding of reconnaissance methodologies and highlighted the importance of limiting public information exposure as a key defensive security practice.
+
+---
