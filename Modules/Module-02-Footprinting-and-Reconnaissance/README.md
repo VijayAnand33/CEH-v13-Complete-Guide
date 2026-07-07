@@ -77,7 +77,7 @@ After completing this module, I was able to:
 - [Sherlock](../../Tools/Sherlock.md)
 - [DomainTools](../../Tools/DomainTools.md)
 - [nslookup](../../Tools/nslookup.md)
-- [tracert](../../Tools/tracert.md)
+- [tracert](../../Tools/traceroute.md)
 - [traceroute](../../Tools/traceroute.md)
 - [eMailTrackerPro](../../Tools/eMailTrackerPro.md)
 - [Recon-ng](../../Tools/Recon-ng.md)

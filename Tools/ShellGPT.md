@@ -158,6 +158,7 @@
 
  ## Used In
 
+ - Module 02 – Footprinting and Reconnaissance
  - Module 14 – Web Application Hacking
  - Module 15 – SQL Injection
 
