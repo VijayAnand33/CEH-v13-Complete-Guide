@@ -174,9 +174,13 @@ flowchart TD
 	class I endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated the complete lifecycle of an authenticated SQL Injection attack. By exploiting insecure SQL queries, I learned how attackers enumerate databases, retrieve sensitive information, and escalate access beyond the database server. I also understood why proper input validation, parameterized queries, and least-privilege database configurations are essential for preventing SQL Injection attacks.
+
+---
 
 ## Lab 2 - Detect SQL Injection Vulnerabilities Using OWASP ZAP
 
@@ -255,9 +259,13 @@ flowchart TD
 	class G endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated the importance of automated vulnerability assessment during web application penetration testing. By identifying SQL Injection vulnerabilities before exploitation, I understood how security scanners help penetration testers prioritize risks, validate findings, and efficiently plan further security assessments.
+
+---
 
 ## Lab 3 - Perform SQL Injection Using ShellGPT
 
@@ -336,9 +344,13 @@ flowchart TD
 	class F endNode;
 ```
 
+---
+
 #### Overall Learning Outcome
 
 This lab demonstrated how AI-powered assistants can enhance penetration testing by simplifying command generation and reducing repetitive manual tasks. I learned that AI complements traditional penetration testing tools by improving productivity while still requiring human expertise to validate results and make security decisions.
+
+---
 
 # Key Takeaways
 
@@ -376,3 +388,5 @@ SQL Injection remains one of the most critical web application vulnerabilities b
 # My Reflection
 
 This module provided a comprehensive understanding of SQL Injection attacks from both offensive and defensive perspectives. I learned how authenticated SQL Injection vulnerabilities can be exploited to enumerate databases, retrieve sensitive information, and even obtain operating system command execution using sqlmap. I also understood the importance of automated vulnerability detection using OWASP ZAP and experienced how AI-assisted tools such as ShellGPT can simplify penetration testing workflows. Most importantly, this module reinforced the significance of secure coding practices, parameterized queries, and proper input validation in protecting database-driven web applications against SQL Injection attacks.
+
+---
