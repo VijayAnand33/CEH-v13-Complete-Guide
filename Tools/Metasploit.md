@@ -169,6 +169,7 @@ In **Module 03 – Scanning Networks**, Metasploit was used as a reconnaissance 
 ## Used In
 
 - Module 03 – Scanning Networks
+- Module 06 – System Hacking
 
 ---
 
