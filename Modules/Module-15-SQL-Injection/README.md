@@ -182,15 +182,15 @@ This lab demonstrated the complete lifecycle of an authenticated SQL Injection a
 
 ---
 
-## Lab 2 - Detect SQL Injection Vulnerabilities Using OWASP ZAP
+# Lab 2 - Detect SQL Injection Vulnerabilities Using OWASP ZAP
 
-### Objective
+## Objective
 
 To understand how OWASP ZAP detects SQL Injection vulnerabilities by analyzing web application requests and responses through automated security scanning.
 
 ---
 
-### Background
+## Background
 
 Before exploiting a vulnerability, penetration testers must first identify and verify its existence. Automated vulnerability scanners such as OWASP ZAP assist security professionals by detecting common web application vulnerabilities, including SQL Injection, Cross-Site Scripting (XSS), insecure HTTP headers, and authentication weaknesses.
 
@@ -198,15 +198,15 @@ This lab demonstrates how OWASP ZAP performs automated security assessments to i
 
 ---
 
-### Task 1 - Detect SQL Injection Vulnerabilities Using OWASP ZAP
+## Task 1 - Detect SQL Injection Vulnerabilities Using OWASP ZAP
 
-#### Tools Used
+### Tools Used
 
 - [OWASP ZAP](../../Tools/OWASP-ZAP.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 The target web application was scanned using OWASP ZAP after performing reconnaissance and spidering. Once the scan completed, the generated security alerts were reviewed to identify SQL Injection findings.
 
@@ -214,7 +214,7 @@ The vulnerability details provided by OWASP ZAP were analyzed to understand the 
 
 ---
 
-#### Observations
+### Observations
 
 - Automated vulnerability scan completed successfully.
 - SQL Injection vulnerability was detected.
@@ -224,7 +224,7 @@ The vulnerability details provided by OWASP ZAP were analyzed to understand the 
 
 ---
 
-#### SQL Injection Detection
+### SQL Injection Detection
 
 ![OWASP ZAP SQL Injection Alert](Images/Lab2-ZAP-SQLi-Alert.png)
 
@@ -232,13 +232,13 @@ The vulnerability details provided by OWASP ZAP were analyzed to understand the 
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how automated vulnerability scanners assist penetration testers in identifying SQL Injection vulnerabilities before exploitation. I understood how OWASP ZAP analyzes application behavior, generates security alerts, and provides valuable information for vulnerability verification and risk assessment.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
@@ -261,21 +261,21 @@ flowchart TD
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated the importance of automated vulnerability assessment during web application penetration testing. By identifying SQL Injection vulnerabilities before exploitation, I understood how security scanners help penetration testers prioritize risks, validate findings, and efficiently plan further security assessments.
 
 ---
 
-## Lab 3 - Perform SQL Injection Using ShellGPT
+# Lab 3 - Perform SQL Injection Using ShellGPT
 
-### Objective
+## Objective
 
 To understand how AI-assisted tools such as ShellGPT can simplify SQL Injection testing by generating sqlmap commands from natural language prompts and assisting penetration testers during security assessments.
 
 ---
 
-### Background
+## Background
 
 Artificial Intelligence is increasingly being integrated into penetration testing workflows to improve efficiency and reduce manual effort. Rather than manually constructing complex commands, penetration testers can describe their objective in natural language and allow AI assistants to generate appropriate commands based on the testing requirements.
 
@@ -283,16 +283,16 @@ This lab demonstrates how ShellGPT can be used to generate sqlmap commands for S
 
 ---
 
-### Task 1 - Perform SQL Injection Using ShellGPT
+## Task 1 - Perform SQL Injection Using ShellGPT
 
-#### Tools Used
+### Tools Used
 
 - [ShellGPT](../../Tools/ShellGPT.md)
 - [sqlmap](../../Tools/sqlmap.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 A natural language prompt describing the SQL Injection objective was provided to ShellGPT. The prompt included the target URL, authentication cookie, and the requirement to enumerate the MovieScope database.
 
@@ -300,7 +300,7 @@ ShellGPT analyzed the request and automatically generated the appropriate sqlmap
 
 ---
 
-#### Observations
+### Observations
 
 - AI successfully interpreted the natural language request.
 - ShellGPT generated the appropriate sqlmap command.
@@ -310,7 +310,7 @@ ShellGPT analyzed the request and automatically generated the appropriate sqlmap
 
 ---
 
-#### AI-Assisted SQL Injection
+### AI-Assisted SQL Injection
 
 ![ShellGPT SQL Injection](Images/Lab3-ShellGPT-SQLi.png)
 
@@ -318,13 +318,13 @@ ShellGPT analyzed the request and automatically generated the appropriate sqlmap
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how Artificial Intelligence can improve penetration testing workflows by generating accurate security testing commands from natural language instructions. I understood how ShellGPT assists ethical hackers by reducing manual effort while maintaining the flexibility of industry-standard tools such as sqlmap.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
@@ -346,7 +346,7 @@ flowchart TD
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how AI-powered assistants can enhance penetration testing by simplifying command generation and reducing repetitive manual tasks. I learned that AI complements traditional penetration testing tools by improving productivity while still requiring human expertise to validate results and make security decisions.
 

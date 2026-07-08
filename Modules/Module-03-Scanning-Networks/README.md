@@ -155,21 +155,21 @@ This task demonstrated how Nmap employs multiple host discovery techniques to ac
 ### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target IP / Network Range] --> B[Select Host Discovery Technique]
-    B --> C[Send Discovery Probe]
-    C --> D{Host Responds?}
-    D -->|Yes| E[Identify Live Host]
-    D -->|No| F[Host Filtered or Offline]
-    E --> G[Proceed to Port & Service Scanning]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target IP / Network Range"] --> B["Select Host Discovery Technique"]
+    B --> C["Send Discovery Probe"]
+    C --> D["Identify Live Hosts"]
+    D --> E["Validate Host Availability"]
+    E --> F["Proceed to Port & Service Scanning"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
-    style F fill:#dc2626,color:#fff,stroke:#ef4444
-    style G fill:#2563eb,color:#fff,stroke:#60a5fa
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
@@ -214,7 +214,7 @@ Throughout the exercise, the impact of Windows Defender Firewall on scan results
 
 ---
 
-## Observations
+### Observations
 
 - Successfully identified open TCP and UDP ports on the target host.
 - Enumerated the services associated with the discovered open ports.
@@ -267,21 +267,21 @@ This task demonstrated how different Nmap scanning techniques provide varying le
 ### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Active Target Host] --> B[Port Scanning]
-    B --> C[Identify Open Ports]
-    C --> D[Enumerate Running Services]
-    D --> E[Detect Service Versions]
-    E --> F[Fingerprint Operating System]
-    F --> G[Build Target Attack Surface]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Active Target Host"] --> B["Perform Port Scanning"]
+    B --> C["Identify Open Ports"]
+    C --> D["Enumerate Running Services"]
+    D --> E["Detect Service Versions"]
+    E --> F["Build Target Attack Surface"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
-    style F fill:#ea580c,color:#fff,stroke:#f97316
-    style G fill:#2563eb,color:#fff,stroke:#60a5fa
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
@@ -368,19 +368,21 @@ This task demonstrated how Nmap combines operating system fingerprinting with th
 ### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target Host] --> B[Aggressive Scan]
-    B --> C[OS Fingerprinting]
-    C --> D[Execute NSE Script]
-    D --> E[Collect Host Information]
-    E --> F[Build Target Profile]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target Host"] --> B["Perform Aggressive Scan"]
+    B --> C["Fingerprint Operating System"]
+    C --> D["Execute NSE Scripts"]
+    D --> E["Collect Host Information"]
+    E --> F["Build Target Profile"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
-    style F fill:#2563eb,color:#fff,stroke:#60a5fa
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
@@ -478,19 +480,21 @@ This task demonstrated how Nmap's evasion capabilities can modify packet charact
 ### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target Protected by Firewall / IDS] --> B[Select Evasion Technique]
-    B --> C[Modify Scan Traffic]
-    C --> D[Transmit Probe Packets]
-    D --> E[Bypass Security Controls]
-    E --> F[Collect Scan Results]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target Protected by Firewall / IDS"] --> B["Apply Evasion Technique"]
+    B --> C["Modify Scan Traffic"]
+    C --> D["Transmit Probe Packets"]
+    D --> E["Bypass Security Controls"]
+    E --> F["Collect Scan Results"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
-    style F fill:#2563eb,color:#fff,stroke:#60a5fa
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
@@ -588,19 +592,21 @@ This task demonstrated how Metasploit can be used as a reconnaissance platform b
 ### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target Network] --> B[Host Discovery]
-    B --> C[Port Scanning]
-    C --> D[Service Enumeration]
-    D --> E[SMB Version Detection]
-    E --> F[Build Network Profile]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target Network"] --> B["Perform Host Discovery"]
+    B --> C["Scan Open Ports"]
+    C --> D["Enumerate Running Services"]
+    D --> E["Identify SMB Version"]
+    E --> F["Build Network Profile"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
-    style F fill:#2563eb,color:#fff,stroke:#60a5fa
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
@@ -689,19 +695,21 @@ This task demonstrated how ShellGPT enhances penetration testing by generating a
 ### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Natural Language Prompt] --> B[ShellGPT]
-    B --> C[Generate Security Commands]
-    C --> D[Execute Nmap / Metasploit]
-    D --> E[Collect Scan Results]
-    E --> F[Automate Reconnaissance Workflow]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Natural Language Prompt"] --> B["AI-Assisted Command Generation"]
+    B --> C["Execute Security Tools"]
+    C --> D["Perform Network Reconnaissance"]
+    D --> E["Analyze Scan Results"]
+    E --> F["Automate Security Workflow"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
-    style F fill:#2563eb,color:#fff,stroke:#60a5fa
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---

@@ -84,15 +84,15 @@ By completing this module, you will learn how to:
 
 ---
 
-## Lab 1: Perform NetBIOS Enumeration
+# Lab 1: Perform NetBIOS Enumeration
 
-### Objective
+## Objective
 
 To perform NetBIOS enumeration using Windows command-line utilities and extract information such as NetBIOS names, machine details, and shared network resources from a remote Windows system.
 
 ---
 
-### Background
+## Background
 
 NetBIOS (Network Basic Input/Output System) is a legacy networking protocol that enables communication between computers on a local network. Although modern Windows environments primarily rely on DNS and Active Directory, NetBIOS is still enabled in many systems for compatibility purposes. Enumerating NetBIOS information can reveal computer names, registered services, shared resources, and other network details that assist penetration testers in understanding the target environment.
 
@@ -100,15 +100,15 @@ Windows provides built-in command-line utilities such as **nbtstat** and **net u
 
 ---
 
-### Task 1: Perform NetBIOS Enumeration using Windows Command-Line Utilities
+## Task 1: Perform NetBIOS Enumeration using Windows Command-Line Utilities
 
-#### Tools Used
+### Tools Used
 
 - [Windows Command-Line Utilities](../../Tools/Windows-Command-Line-Utilities.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Windows command-line utilities were used to enumerate NetBIOS information from the target Windows 11 system. The `nbtstat -a` command queried the remote host and displayed its NetBIOS name table, revealing the computer name, registered NetBIOS services, and MAC address. The `net use` command was then executed to display existing network connections and shared resources available on the system.
 
@@ -116,7 +116,7 @@ These built-in utilities demonstrated how valuable reconnaissance information ca
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully enumerated the NetBIOS name table of the target system.
 - Identified the target computer name and registered NetBIOS services.
@@ -141,45 +141,49 @@ These built-in utilities demonstrated how valuable reconnaissance information ca
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how Windows command-line utilities can be used to perform NetBIOS enumeration and identify valuable information about target systems, including NetBIOS names and shared network resources. Such information assists penetration testers in building an accurate profile of the target environment.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target Windows System] --> B[Enumerate NetBIOS Names]
-    B --> C[Identify Host Information]
-    C --> D[Enumerate Shared Resources]
-    D --> E[Build Target Profile]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target Windows System"] --> B["Perform NetBIOS Enumeration"]
+    B --> C["Identify Host Information"]
+    C --> D["Enumerate Shared Resources"]
+    D --> E["Analyze Enumeration Results"]
+    E --> F["Build Target Profile"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how built-in Windows command-line utilities can be used to enumerate NetBIOS information and shared network resources during the reconnaissance phase of a penetration test. The information gathered provides valuable insight into the target environment and supports subsequent enumeration and exploitation activities.
 
 ---
 
-## Lab 2: Perform SNMP Enumeration
+# Lab 2: Perform SNMP Enumeration
 
-### Objective
+## Objective
 
 To perform SNMP enumeration using SnmpWalk and retrieve management information, system details, and network configuration data from a target system.
 
 ---
 
-### Background
+## Background
 
 Simple Network Management Protocol (SNMP) is widely used to monitor and manage network devices such as routers, switches, servers, and printers. Devices running SNMP expose management information through a hierarchical structure of Object Identifiers (OIDs). If weak or default community strings are configured, attackers can enumerate sensitive information including system details, network interfaces, running services, routing information, and device configurations.
 
@@ -187,15 +191,15 @@ SnmpWalk is a command-line utility that queries SNMP-enabled devices by traversi
 
 ---
 
-### Task 1: Perform SNMP Enumeration using SnmpWalk
+## Task 1: Perform SNMP Enumeration using SnmpWalk
 
-#### Tools Used
+### Tools Used
 
 - [SnmpWalk](../../Tools/SnmpWalk.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 SnmpWalk was used to enumerate SNMP information from the target Windows Server 2022 system. Enumeration was performed using both SNMPv1 and SNMPv2c with the default **public** community string. The tool queried the Management Information Base (MIB) and retrieved accessible Object Identifiers (OIDs), exposing valuable information about the target system, including device configuration, system information, network parameters, and management data.
 
@@ -203,7 +207,7 @@ The results demonstrated how improperly secured SNMP services can disclose sensi
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully connected to the target using the default SNMP community string.
 - Retrieved numerous Object Identifiers (OIDs) from the target system.
@@ -220,45 +224,49 @@ The results demonstrated how improperly secured SNMP services can disclose sensi
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how SNMP enumeration can reveal valuable management information from network devices when default or weak community strings are configured. Properly securing SNMP services is essential to prevent unauthorized disclosure of sensitive network information.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target SNMP Service] --> B[Connect using Community String]
-    B --> C[Traverse MIB Tree]
-    C --> D[Retrieve OIDs]
-    D --> E[Enumerate System Information]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target SNMP Service"] --> B["Authenticate with Community String"]
+    B --> C["Traverse MIB Tree"]
+    C --> D["Retrieve Object Identifiers (OIDs)"]
+    D --> E["Analyze System Information"]
+    E --> F["Build Management Profile"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how SnmpWalk can enumerate information exposed by SNMP-enabled systems through accessible Object Identifiers. The retrieved management information provides valuable intelligence during reconnaissance and highlights the importance of securing SNMP services by using strong community strings and restricting unauthorized access.
 
 ---
 
-## Lab 3: Perform LDAP Enumeration
+# Lab 3: Perform LDAP Enumeration
 
-### Objective
+## Objective
 
 To perform LDAP enumeration using Active Directory Explorer (AD Explorer) and retrieve information about the Active Directory structure, domain objects, and user account attributes.
 
 ---
 
-### Background
+## Background
 
 Lightweight Directory Access Protocol (LDAP) is an application protocol used to access and manage directory services such as Microsoft Active Directory. LDAP stores information about users, groups, computers, organizational units, and other network resources in a hierarchical directory structure. Enumerating LDAP provides penetration testers with valuable information about the domain environment, including user accounts, group memberships, computer objects, and directory configurations.
 
@@ -266,15 +274,15 @@ Active Directory Explorer (AD Explorer) is a graphical tool that enables adminis
 
 ---
 
-### Task 1: Perform LDAP Enumeration using Active Directory Explorer (AD Explorer)
+## Task 1: Perform LDAP Enumeration using Active Directory Explorer (AD Explorer)
 
-#### Tools Used
+### Tools Used
 
 - [AD Explorer](../../Tools/AD-Explorer.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Active Directory Explorer was connected to the target Active Directory domain to enumerate LDAP information. The directory hierarchy was explored to identify domain components, organizational units, and user objects. User accounts were inspected to view their associated attributes and properties stored within Active Directory.
 
@@ -282,7 +290,7 @@ The exercise demonstrated how LDAP enumeration provides detailed information abo
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully connected to the target Active Directory domain.
 - Enumerated the hierarchical structure of the Active Directory database.
@@ -308,45 +316,49 @@ The exercise demonstrated how LDAP enumeration provides detailed information abo
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how LDAP enumeration can reveal detailed information about Active Directory domains, including directory objects, user accounts, and associated attributes. Such information is valuable during reconnaissance and can assist penetration testers in understanding the target environment.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target Active Directory] --> B[Connect via LDAP]
-    B --> C[Enumerate Directory Structure]
-    C --> D[Enumerate User Objects]
-    D --> E[Collect Domain Information]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target Active Directory"] --> B["Connect using AD Explorer"]
+    B --> C["Browse LDAP Directory Structure"]
+    C --> D["Inspect User Objects & Attributes"]
+    D --> E["Analyze Domain Information"]
+    E --> F["Build Active Directory Profile"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how LDAP enumeration using AD Explorer provides insight into the structure and contents of an Active Directory environment. Enumerating directory objects and user attributes enables penetration testers to better understand the domain architecture and identify information that may support subsequent attack phases.
 
 ---
 
-## Lab 4: Perform NFS Enumeration
+# Lab 4: Perform NFS Enumeration
 
-### Objective
+## Objective
 
 To perform Network File System (NFS) enumeration using SuperEnum and RPCScan to identify RPC services, NFS shares, and network resources exposed by the target system.
 
 ---
 
-### Background
+## Background
 
 Network File System (NFS) enables systems to share files and directories across a network. Before accessing shared resources, attackers often enumerate NFS services to identify exported directories, RPC services, mount points, and file-sharing configurations. Since NFS relies on Remote Procedure Call (RPC) services, both RPC enumeration and NFS enumeration are commonly performed together to identify accessible network resources.
 
@@ -354,16 +366,16 @@ SuperEnum automates the enumeration of common network services, while RPCScan fo
 
 ---
 
-### Task 1: Perform NFS Enumeration using RPCScan and SuperEnum
+## Task 1: Perform NFS Enumeration using RPCScan and SuperEnum
 
-#### Tools Used
+### Tools Used
 
 - [SuperEnum](../../Tools/SuperEnum.md)
 - [RPCScan](../../Tools/RPCScan.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 NFS enumeration was performed against the target Windows Server 2019 system after confirming that the NFS service was available. SuperEnum was used to scan the target host and identify open services, including the NFS service running on TCP port 2049. The enumeration results confirmed that the NFS service was accessible along with other exposed network services.
 
@@ -371,7 +383,7 @@ RPCScan was then used to enumerate Remote Procedure Call (RPC) services associat
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully identified the NFS service running on TCP port 2049.
 - Enumerated exposed network services using SuperEnum.
@@ -397,45 +409,48 @@ RPCScan was then used to enumerate Remote Procedure Call (RPC) services associat
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how SuperEnum and RPCScan can be used to enumerate NFS and RPC services, allowing penetration testers to identify shared resources and exposed services that may be leveraged during subsequent attack phases.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target NFS Server] --> B[Enumerate Services]
-    B --> C[Identify NFS Port 2049]
-    C --> D[Enumerate RPC Services]
-    D --> E[Identify Exposed Resources]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target NFS Server"] --> B["Enumerate Network Services"]
+    B --> C["Identify NFS Service"]
+    C --> D["Enumerate RPC Services"]
+    D --> E["Analyze Shared Resources"]
+    E --> F["Build Service Profile"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
-
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how NFS and RPC enumeration reveal information about shared services and network resources exposed by a target system. Identifying accessible NFS services enables penetration testers to evaluate potential file-sharing weaknesses and better understand the attack surface presented by network storage services.
 
 ---
 
-## Lab 5: Perform DNS Enumeration
+# Lab 5: Perform DNS Enumeration
 
-### Objective
+## Objective
 
 To perform DNS enumeration using Windows and Linux command-line utilities to retrieve DNS information and assess whether the target DNS server permits zone transfers.
 
 ---
 
-### Background
+## Background
 
 The Domain Name System (DNS) translates human-readable domain names into IP addresses and stores important information about network infrastructure. DNS enumeration enables penetration testers to identify authoritative name servers, mail servers, Start of Authority (SOA) records, and other DNS information that helps map a target's network.
 
@@ -443,15 +458,15 @@ A DNS zone transfer (AXFR) is used to replicate DNS records between primary and 
 
 ---
 
-### Task 1: Perform DNS Enumeration using Zone Transfer
+## Task 1: Perform DNS Enumeration using Zone Transfer
 
-#### Tools Used
+### Tools Used
 
 - [Windows Command-Line Utilities](../../Tools/Windows-Command-Line-Utilities.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Windows and Linux command-line utilities were used to perform DNS enumeration on the target domain. The **`dig`** utility on the Parrot Security machine was used to identify the authoritative DNS name servers and attempt a DNS zone transfer (AXFR). On the Windows system, the **`nslookup`** utility was used to retrieve the Start of Authority (SOA) record and verify whether the target DNS server permitted zone transfers.
 
@@ -459,7 +474,7 @@ The enumeration successfully retrieved DNS server information, while the zone tr
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully identified the authoritative DNS name servers for the target domain.
 - Retrieved Start of Authority (SOA) information for the target domain.
@@ -485,45 +500,49 @@ The enumeration successfully retrieved DNS server information, while the zone tr
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how DNS enumeration reveals valuable information about a target's DNS infrastructure, while zone transfer testing verifies whether sensitive DNS records can be retrieved. Properly configured DNS servers should restrict zone transfers to authorized secondary servers only.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target Domain] --> B[Enumerate DNS Records]
-    B --> C[Identify Name Servers]
-    C --> D[Attempt AXFR Zone Transfer]
-    D --> E[Assess DNS Security]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target Domain"] --> B["Enumerate DNS Records"]
+    B --> C["Identify Authoritative Name Servers"]
+    C --> D["Attempt DNS Zone Transfer"]
+    D --> E["Assess DNS Security"]
+    E --> F["Analyze Enumeration Results"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how DNS enumeration provides insight into a target organization's DNS infrastructure and how DNS zone transfer testing helps determine whether sensitive DNS records are exposed. Restricting zone transfers is an important defensive measure that prevents attackers from obtaining a complete map of an organization's network.
 
 ---
 
-## Lab 6: Perform SMTP Enumeration
+# Lab 6: Perform SMTP Enumeration
 
-### Objective
+## Objective
 
 To perform SMTP enumeration using the Nmap Scripting Engine (NSE) and identify valid mail users, SMTP relay configurations, and supported SMTP service information on the target system.
 
 ---
 
-### Background
+## Background
 
 Simple Mail Transfer Protocol (SMTP) is responsible for sending email across networks. Misconfigured SMTP servers may disclose valid user accounts, allow unauthorized mail relaying, or reveal supported SMTP commands that attackers can leverage during subsequent attacks. Enumerating SMTP services enables penetration testers to identify potential weaknesses that may facilitate password spraying, phishing, or unauthorized mail delivery.
 
@@ -531,15 +550,15 @@ Nmap's Scripting Engine (NSE) provides specialized SMTP scripts that automate th
 
 ---
 
-### Task 1: Perform SMTP Enumeration using Nmap
+## Task 1: Perform SMTP Enumeration using Nmap
 
-#### Tools Used
+### Tools Used
 
 - [Nmap](../../Tools/Nmap.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Nmap NSE scripts were used to enumerate the SMTP service running on the target system. The `smtp-enum-users` script identified potential mail user accounts configured on the SMTP server, while the `smtp-open-relay` script tested whether the server permitted unauthorized mail relaying. Additional SMTP scripts were explored to identify supported SMTP commands and further understand the capabilities of the target mail server.
 
@@ -547,7 +566,7 @@ The enumeration demonstrated how SMTP services can expose valuable information t
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully enumerated potential SMTP user accounts.
 - Verified the SMTP relay configuration of the target server.
@@ -573,59 +592,63 @@ The enumeration demonstrated how SMTP services can expose valuable information t
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how Nmap NSE scripts can enumerate SMTP services to identify valid mail users and assess mail relay security. Proper SMTP configuration is essential to prevent information disclosure and unauthorized email relay attacks.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target SMTP Server] --> B[Enumerate Mail Users]
-    B --> C[Test SMTP Relay]
-    C --> D[Identify SMTP Capabilities]
-    D --> E[Assess Security Posture]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target SMTP Server"] --> B["Enumerate Mail Users"]
+    B --> C["Test SMTP Relay Configuration"]
+    C --> D["Identify SMTP Capabilities"]
+    D --> E["Analyze Security Configuration"]
+    E --> F["Assess Security Posture"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how SMTP enumeration using Nmap's Scripting Engine can identify valid mail users and evaluate SMTP relay security. The information gathered highlights potential weaknesses in mail server configurations and emphasizes the importance of securing SMTP services against unauthorized enumeration and abuse.
 
 ---
 
-## Lab 7: Perform Enumeration using Various Enumeration Tools
+# Lab 7: Perform Enumeration using Various Enumeration Tools
 
-### Objective
+## Objective
 
 To perform comprehensive system enumeration using Global Network Inventory and collect detailed information about the target system, including operating system details, installed software, hardware information, users, services, and shared resources.
 
 ---
 
-### Background
+## Background
 
 Global Network Inventory (GNI) is an agentless network auditing and inventory tool that scans systems across a network to collect hardware, software, and configuration information. Unlike individual enumeration utilities that focus on specific services, GNI performs comprehensive host enumeration by gathering information from multiple system components through a single audit process. Such information assists administrators in asset management while also providing valuable reconnaissance data during authorized penetration testing.
 
 ---
 
-### Task 1: Enumerate Information using Global Network Inventory
+## Task 1: Enumerate Information using Global Network Inventory
 
-#### Tools Used
+### Tools Used
 
 - [Global Network Inventory](../../Tools/Global-Network-Inventory.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Global Network Inventory was configured to perform a single-host audit against the target Windows Server 2022 system. After authenticating to the target, the tool conducted a comprehensive inventory scan and collected information about the operating system, hardware configuration, installed software, services, users, NetBIOS information, shared resources, and other system details.
 
@@ -633,7 +656,7 @@ The audit results were presented through categorized views, enabling detailed in
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully completed a comprehensive audit of the target system.
 - Retrieved detailed operating system information.
@@ -667,59 +690,63 @@ The audit results were presented through categorized views, enabling detailed in
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how Global Network Inventory performs centralized host enumeration by collecting operating system, software, hardware, user, and service information from target systems. Such comprehensive inventories assist both system administrators and penetration testers in understanding the target environment.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Target System] --> B[Authenticate]
-    B --> C[Perform Inventory Scan]
-    C --> D[Collect System Information]
-    D --> E[Generate Audit Report]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Target System"] --> B["Authenticate to Target"]
+    B --> C["Perform Inventory Scan"]
+    C --> D["Collect System Information"]
+    D --> E["Generate Audit Results"]
+    E --> F["Build Asset Inventory"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how Global Network Inventory provides comprehensive system enumeration by consolidating hardware, software, network, and user information into a single audit. Such tools enable rapid asset discovery and provide valuable intelligence during security assessments and infrastructure management.
 
 ---
 
-## Lab 8: Perform Enumeration using AI
+# Lab 8: Perform Enumeration using AI
 
-### Objective
+## Objective
 
 To perform AI-assisted network enumeration using ShellGPT by generating and executing enumeration commands for various network services and automating common reconnaissance tasks.
 
 ---
 
-### Background
+## Background
 
 ShellGPT integrates OpenAI's language models with the command line, enabling users to generate shell commands through natural language prompts. During penetration testing, ShellGPT can simplify enumeration by producing commands for tools such as Nmap and SnmpWalk, automating repetitive tasks, and generating scripts that accelerate reconnaissance activities while reducing manual effort.
 
 ---
 
-### Task 1: Perform Enumeration using ShellGPT
+## Task 1: Perform Enumeration using ShellGPT
 
-#### Tools Used
+### Tools Used
 
 - [ShellGPT](../../Tools/ShellGPT.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 ShellGPT was configured on the Parrot Security machine and used to generate shell commands for performing enumeration against target systems. Natural language prompts were supplied to enumerate NetBIOS, SNMP, SMTP, DNS, LDAP, SMB, IPsec, and FTP services using established security tools such as Nmap and SnmpWalk.
 
@@ -727,7 +754,7 @@ In addition to generating individual enumeration commands, ShellGPT was used to 
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully generated enumeration commands using natural language prompts.
 - Performed NetBIOS, SNMP, SMTP, DNS, LDAP, SMB, IPsec, and FTP enumeration through AI-generated commands.
@@ -761,31 +788,35 @@ In addition to generating individual enumeration commands, ShellGPT was used to 
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how ShellGPT can simplify penetration testing by converting natural language prompts into executable enumeration commands and automation scripts. AI-assisted workflows improve efficiency while still relying on established security tools for the actual enumeration process.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
-flowchart LR
-    A[Natural Language Prompt] --> B[ShellGPT]
-    B --> C[Generate Security Commands]
-    C --> D[Execute Enumeration]
-    D --> E[Collect Results]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#D0E8FF', 'primaryTextColor': '#092B4B', 'primaryBorderColor': '#1C6DD0', 'lineColor': '#2A7EE0', 'secondaryColor': '#EBF5FF', 'tertiaryColor': '#BBDFFF'}}}%%
+flowchart TD
+    A["Natural Language Prompt"] --> B["AI-Assisted Enumeration"]
+    B --> C["Generate Security Commands"]
+    C --> D["Execute Enumeration Tasks"]
+    D --> E["Analyze Results"]
+    E --> F["Automate Enumeration Workflow"]
 
-    style A fill:#1f2937,color:#fff,stroke:#2563eb
-    style B fill:#374151,color:#fff,stroke:#2563eb
-    style C fill:#4b5563,color:#fff,stroke:#2563eb
-    style D fill:#7c3aed,color:#fff,stroke:#8b5cf6
-    style E fill:#059669,color:#fff,stroke:#10b981
+    classDef start fill:#D6E9FF,stroke:#145DA0,stroke-width:2px,color:#092B4B;
+    classDef process fill:#FFFFFF,stroke:#1C6DD0,stroke-width:1.5px,color:#0D1B2A;
+    classDef endNode fill:#DCEED9,stroke:#2E7D32,stroke-width:2px,color:#1B5E20;
+
+    class A start;
+    class B,C,D,E process;
+    class F endNode;
 ```
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how AI-assisted tools such as ShellGPT can streamline network enumeration by generating commands, automating repetitive tasks, and orchestrating established security utilities. While the underlying enumeration is still performed by traditional tools, AI significantly improves efficiency and reduces the complexity of command generation during penetration testing.
 

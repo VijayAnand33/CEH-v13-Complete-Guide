@@ -82,35 +82,35 @@ After completing this module, I was able to:
 
 --- 
 
-## Lab 1 - Perform Wireless Traffic Analysis
+# Lab 1 - Perform Wireless Traffic Analysis
 
-### Objective
+## Objective
 
 To understand how wireless packets are captured and analyzed using Wireshark in order to identify wireless network characteristics, communication protocols, and security-related information.
 
 ---
 
-### Background
+## Background
 
 Wireless traffic analysis is the foundation of wireless penetration testing. Before attempting any attack, a penetration tester analyzes captured wireless traffic to identify wireless networks, access points, authentication methods, encryption protocols, and connected devices. Since wireless communication occurs over radio waves, packet analysis helps reveal valuable information about the target network.
 
 ---
 
-### Task 1 - Wi-Fi Packet Analysis using Wireshark
+## Task 1 - Wi-Fi Packet Analysis using Wireshark
 
-#### Tools Used
+### Tools Used
 
 - [Wireshark](../../Tools/Wireshark.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 A previously captured wireless packet capture (`WPA2crack-01.cap`) was opened using Wireshark. Since the lab environment does not provide a physical wireless adapter, the supplied capture file was used to analyze IEEE 802.11 wireless traffic. The captured packets were inspected to identify wireless communication, packet details, and protocol information. Wireshark's filtering capability can further be used to locate specific wireless frames and analyze network activity.
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully opened the provided wireless capture file.
 - Identified IEEE 802.11 wireless frames.
@@ -120,7 +120,7 @@ A previously captured wireless packet capture (`WPA2crack-01.cap`) was opened us
 
 ---
 
-#### Wireless Packet Analysis
+### Wireless Packet Analysis
 
 ![Wireshark 802.11 Analysis](Images/Lab1-Wireshark-80211-Analysis.png)
 
@@ -128,13 +128,13 @@ A previously captured wireless packet capture (`WPA2crack-01.cap`) was opened us
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how Wireshark analyzes captured wireless traffic and helps identify wireless communication protocols, frame types, and network information. I understood the importance of wireless packet analysis during reconnaissance before performing wireless security assessments.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
 graph TD
@@ -146,41 +146,41 @@ graph TD
 
 ---
 
-#### Overall Learning Outcome
+### Overall Learning Outcome
 
 This lab introduced wireless traffic analysis and demonstrated how captured wireless packets can be inspected to understand wireless network communication before performing security testing.
 
 ---
 
-## Lab 2 - Perform Wireless Attacks
+# Lab 2 - Perform Wireless Attacks
 
-### Objective
+## Objective
 
 To understand how Aircrack-ng performs WPA2 password auditing using a captured wireless packet file containing a WPA2 authentication handshake.
 
 ---
 
-### Background
+## Background
 
 WPA2 protects wireless networks using strong encryption and authentication mechanisms. Instead of attacking the encryption algorithm directly, Aircrack-ng performs an offline dictionary attack against a captured WPA2 handshake to determine whether the wireless password is weak and can be recovered.
 
 ---
 
-### Task 1 - Crack a WPA2 Network using Aircrack-ng
+## Task 1 - Crack a WPA2 Network using Aircrack-ng
 
-#### Tools Used
+### Tools Used
 
 - [Aircrack-ng](../../Tools/Aircrack-ng.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 The provided wireless packet capture containing a previously captured WPA2 handshake was supplied to Aircrack-ng together with a password wordlist. Aircrack-ng compared candidate passwords from the wordlist against the captured authentication data and successfully recovered the WPA2 pre-shared key, demonstrating how weak wireless passwords can be identified during authorized security assessments.
 
 ---
 
-#### Observations
+### Observations
 
 - Loaded the provided wireless capture file.
 - Performed an offline dictionary attack.
@@ -190,21 +190,20 @@ The provided wireless packet capture containing a previously captured WPA2 hands
 
 ---
 
-#### WPA2 Password Recovery
+### WPA2 Password Recovery
 
 ![Aircrack Password Recovery](Images/Lab2-Aircrack-Password-Recovery.png)
 
 *Figure 2.1 – Aircrack-ng performing an offline dictionary attack against a captured WPA2 handshake and successfully recovering the wireless password.*
 
 ---
-
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how Aircrack-ng audits WPA2 security by testing candidate passwords against a captured authentication handshake. I learned that the effectiveness of this attack depends primarily on password strength rather than weaknesses in WPA2 encryption.
 
 ---
 
-#### Attack Flow
+### Attack Flow
 
 ```mermaid
 graph TD
@@ -218,7 +217,7 @@ graph TD
 
 ---
 
-#### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how wireless password auditing is performed using Aircrack-ng. Rather than breaking WPA2 encryption, the tool evaluates the strength of the wireless password by performing an offline dictionary attack against a captured WPA2 authentication handshake.
 

@@ -69,36 +69,36 @@ The following tools were used throughout this module to perform reconnaissance, 
 
 # Labs Covered
 
-## Lab 1 - Footprint the Web Infrastructure
+# Lab 1 - Footprint the Web Infrastructure
 
-### Objective
+## Objective
 
 To understand how web application reconnaissance is performed to identify the target application's infrastructure, technologies, services, directories, and potential attack surface before attempting any exploitation.
 
 ---
 
-### Background
+## Background
 
 Reconnaissance is the first phase of a web application penetration test. Before attempting to exploit a web application, a penetration tester must understand how the application is built, which services are running, what technologies are being used, and whether any potential vulnerabilities exist. Collecting this information helps build an attack strategy and reduces unnecessary guessing during later stages of the assessment.
 
 ---
 
-### Task 1 - Perform Web Application Reconnaissance using Nmap and Telnet
+## Task 1 - Perform Web Application Reconnaissance using Nmap and Telnet
 
-#### Tools Used
+### Tools Used
 
 - [Nmap](../../Tools/Nmap.md)
 - [Telnet](../../Tools/Telnet.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Performed reconnaissance on the target web application using **Nmap** and **Telnet**. Nmap was used to identify open ports, discover running services, detect service versions, and gather information about the target web server. Telnet was then used to establish a manual connection to the web server over HTTP (port 80) and retrieve HTTP response headers through banner grabbing.
 
 ---
 
-#### Observations
+### Observations
 
 - Identified the target's open ports and the services running on them.
 - Detected the web server software and service version using Nmap.
@@ -107,7 +107,7 @@ Performed reconnaissance on the target web application using **Nmap** and **Teln
 
 ---
 
-#### Scan Result
+### Scan Result
 
 ![Nmap Scan Result](Images/Lab1-Nmap-Scan.png)
 
@@ -115,27 +115,27 @@ Performed reconnaissance on the target web application using **Nmap** and **Teln
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated that effective penetration testing begins with thorough reconnaissance rather than immediate exploitation. By understanding the target's infrastructure, technologies, and exposed services, a penetration tester can make informed decisions, reduce unnecessary guesswork, and plan a structured approach for identifying and validating security vulnerabilities.
 
 ---
 
-### Task 2 - Perform Web Spidering using OWASP ZAP
+## Task 2 - Perform Web Spidering using OWASP ZAP
 
-#### Tools Used
+### Tools Used
 
 - [OWASP ZAP](../../Tools/OWASP-ZAP.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Performed web spidering on the target web application using **OWASP ZAP**. The spider automatically crawled the application by following hyperlinks, forms, and other accessible resources to discover web pages, directories, and application endpoints.
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully crawled the target web application.
 - Identified multiple web pages, directories, and application resources.
@@ -144,7 +144,7 @@ Performed web spidering on the target web application using **OWASP ZAP**. The s
 
 ---
 
-#### Spider Results
+### Spider Results
 
 ![OWASP ZAP Spider](Images/Lab1-ZAP-Site-Tree.png)
 
@@ -152,13 +152,13 @@ Performed web spidering on the target web application using **OWASP ZAP**. The s
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated that web spidering is an essential reconnaissance technique for understanding a web application's structure. By automatically discovering accessible resources, penetration testers can ensure that security assessments cover a larger attack surface instead of testing only the pages that are immediately visible.
 
 ---
 
-### Task 3 - Perform Web Application Vulnerability Scanning using SmartScanner
+## Task 3 - Perform Web Application Vulnerability Scanning using SmartScanner
 
 #### Tools Used
 
@@ -166,13 +166,13 @@ This task demonstrated that web spidering is an essential reconnaissance techniq
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Performed an automated vulnerability assessment on the target web application using **SmartScanner**. The scanner analyzed the application for common web security weaknesses and generated a report highlighting the identified vulnerabilities.
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully scanned the target web application for vulnerabilities.
 - Detected potential security issues based on known vulnerability signatures.
@@ -181,7 +181,7 @@ Performed an automated vulnerability assessment on the target web application us
 
 ---
 
-#### Vulnerability Scan Report
+### Vulnerability Scan Report
 
 ![SmartScanner Report](Images/Lab1-SmartScanner-Report.png)
 
@@ -189,7 +189,7 @@ Performed an automated vulnerability assessment on the target web application us
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated the importance of automated vulnerability scanning during web application assessments. While automated scanners efficiently identify common security issues, the reported findings should always be manually validated before concluding that a vulnerability is exploitable.
 
@@ -219,51 +219,41 @@ flowchart TD
 
 ---
 
-### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated the importance of web application reconnaissance as the foundation of penetration testing. By identifying the application's infrastructure, mapping its resources, and performing an initial vulnerability assessment, I understood how information gathered during this phase helps penetration testers build an effective strategy before attempting exploitation.
 
 ---
 
-### Key Takeaways
+# Lab 2 - Perform Web Application Attacks
 
-- Reconnaissance is the first and one of the most important phases of web application penetration testing.
-- Information gathered from open ports, services, and server technologies helps identify potential attack vectors.
-- Web spidering enables testers to discover hidden pages, directories, and application endpoints.
-- Automated vulnerability scanners provide a quick overview of potential security weaknesses but should always be followed by manual verification.
-- Effective reconnaissance reduces guesswork and improves the efficiency of subsequent penetration testing activities.
-
----
-
-## Lab 2 - Perform Web Application Attacks
-
-### Objective
+## Objective
 
 To understand how authentication attacks and web application exploitation are performed in a controlled environment using industry-standard penetration testing tools.
 
 ---
 
-### Background
+## Background
 
 Once sufficient information about a target web application has been collected, the next phase of penetration testing focuses on validating identified weaknesses through controlled exploitation. This lab demonstrates how authentication mechanisms can be tested, how vulnerable WordPress components can be identified, and how Remote Code Execution (RCE) vulnerabilities can be verified in an authorized testing environment.
 
 ---
 
-### Task 1 - Perform a Brute-force Attack using Burp Suite
+## Task 1 - Perform a Brute-force Attack using Burp Suite
 
-#### Tools Used
+### Tools Used
 
 - [Burp Suite](../../Tools/Burp-Suite.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Configured Burp Suite as an intercepting proxy and captured the authentication request generated by the target web application. The intercepted request was then sent to Burp Intruder, where multiple username and password combinations were tested using a controlled brute-force attack.
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully intercepted the login request before it reached the web server.
 - Configured Burp Intruder to automate multiple authentication attempts.
@@ -272,7 +262,7 @@ Configured Burp Suite as an intercepting proxy and captured the authentication r
 
 ---
 
-#### Intercepted HTTP Request
+### Intercepted HTTP Request
 
 ![Burp Proxy](Images/Lab2-Burp-Proxy.png)
 
@@ -280,7 +270,7 @@ Configured Burp Suite as an intercepting proxy and captured the authentication r
 
 ---
 
-#### Brute-Force Results
+### Brute-Force Results
 
 ![Burp Intruder](Images/Lab2-Burp-Intruder.png)
 
@@ -288,28 +278,28 @@ Configured Burp Suite as an intercepting proxy and captured the authentication r
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how authentication requests can be intercepted, modified, and replayed during penetration testing. It also reinforced that successful authentication indicates valid credentials but does not necessarily imply administrative access or ownership of the account.
 
 ---
 
-### Task 2 - Perform Remote Code Execution (RCE)
+## Task 2 - Perform Remote Code Execution (RCE)
 
-#### Tools Used
+### Tools Used
 
 - [WPScan](../../Tools/WPScan.md)
 - [curl](../../Tools/cURL.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Performed a WordPress security assessment using WPScan to enumerate installed plugins and identify vulnerable components. After discovering a vulnerable plugin, a crafted HTTP request was sent using curl to exploit a Remote Code Execution (RCE) vulnerability and execute commands on the target server.
 
 ---
 
-#### Observations
+### Observations
 
 - Enumerated WordPress plugins installed on the target application.
 - Identified a plugin vulnerable to Remote Code Execution.
@@ -318,7 +308,7 @@ Performed a WordPress security assessment using WPScan to enumerate installed pl
 
 ---
 
-#### WordPress Enumeration
+### WordPress Enumeration
 
 ![WPScan Enumeration](Images/Lab2-WPScan-Enumeration.png)
 
@@ -326,7 +316,7 @@ Performed a WordPress security assessment using WPScan to enumerate installed pl
 
 ---
 
-#### Remote Code Execution
+### Remote Code Execution
 
 ![RCE Success](Images/Lab2-RCE-Success.png)
 
@@ -334,7 +324,7 @@ Performed a WordPress security assessment using WPScan to enumerate installed pl
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated how attackers may leverage vulnerable web application components to execute arbitrary commands on a server. It reinforced the importance of vulnerability management, timely software updates, and secure plugin administration to reduce the risk of successful exploitation.
 
@@ -366,51 +356,41 @@ flowchart TD
 
 ---
 
-### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how web application attacks progress from authentication testing to controlled exploitation. By intercepting HTTP requests, evaluating authentication mechanisms, identifying vulnerable application components, and validating Remote Code Execution vulnerabilities, I gained a practical understanding of how penetration testers verify security weaknesses while maintaining a structured and authorized testing methodology.
 
 ---
 
-### Key Takeaways
+# Lab 3 - Detect Web Application Vulnerabilities
 
-- Authentication requests can be intercepted and analyzed before reaching the web server.
-- Automated brute-force attacks highlight the importance of strong passwords and account protection mechanisms.
-- WordPress plugins should be regularly updated and monitored for known vulnerabilities.
-- Remote Code Execution is one of the most critical web application vulnerabilities because it enables command execution on the target server.
-- Exploitation should always be performed within an authorized and controlled penetration testing environment.
-
----
-
-## Lab 3 - Detect Web Application Vulnerabilities
-
-### Objective
+## Objective
 
 To understand how automated web application vulnerability scanners can be used to identify potential security weaknesses and generate reports for further analysis.
 
 ---
 
-### Background
+## Background
 
 Modern web applications often contain numerous pages, parameters, and functionalities that make manual testing time-consuming. Automated vulnerability scanners help penetration testers quickly identify common security issues, providing an efficient starting point for manual verification and further security assessment.
 
 ---
 
-### Task 1 - Perform Web Application Vulnerability Scanning using Wapiti
+# Task 1 - Perform Web Application Vulnerability Scanning using Wapiti
 
-#### Tools Used
+### Tools Used
 
 - [Wapiti](../../Tools/Wapiti.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Performed an automated security assessment of the target web application using Wapiti. The scanner crawled the application, analyzed its pages and input parameters, and generated a comprehensive HTML report containing the detected security findings.
 
 ---
 
-#### Observations
+### Observations
 
 - Successfully scanned the target web application.
 - Identified potential web application vulnerabilities through automated analysis.
@@ -419,7 +399,7 @@ Performed an automated security assessment of the target web application using W
 
 ---
 
-#### Vulnerability Assessment Report
+### Vulnerability Assessment Report
 
 ![Wapiti Report](Images/Lab3-Wapiti-Report.png)
 
@@ -427,7 +407,7 @@ Performed an automated security assessment of the target web application using W
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated the effectiveness of automated vulnerability scanners in identifying potential security issues across large web applications. It also reinforced that automated scanning serves as an initial assessment and should always be complemented with manual validation and penetration testing.
 
@@ -454,51 +434,41 @@ flowchart TD
 
 ---
 
-### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how automated vulnerability scanners improve the efficiency of web application security assessments by rapidly identifying potential weaknesses and generating structured reports. The findings obtained through automated scanning provide valuable guidance for subsequent manual verification and exploitation activities.
 
 ---
 
-### Key Takeaways
+# Lab 4 - Perform AI-Assisted Web Application Testing
 
-- Automated scanners rapidly assess large web applications.
-- Vulnerability reports provide a structured overview of potential security weaknesses.
-- Automated findings should always be manually validated.
-- Security reports help prioritize remediation efforts and further penetration testing.
-- Automated scanning complements, but does not replace, manual security testing.
-
----
-
-## Lab 4 - Perform AI-Assisted Web Application Testing
-
-### Objective
+## Objective
 
 To understand how AI-powered tools can assist penetration testers in performing reconnaissance, vulnerability assessment, and security analysis more efficiently.
 
 ---
 
-### Background
+## Background
 
 Artificial Intelligence is increasingly being integrated into cybersecurity workflows to improve efficiency and reduce repetitive manual effort. AI-assisted penetration testing tools help security professionals generate commands, interpret scan results, explain vulnerabilities, and automate routine tasks while still requiring human validation and decision-making.
 
 ---
 
-### Task 1 - Perform AI-Assisted Web Application Testing using ShellGPT
+## Task 1 - Perform AI-Assisted Web Application Testing using ShellGPT
 
-#### Tools Used
+### Tools Used
 
 - [ShellGPT](../../Tools/ShellGPT.md)
 
 ---
 
-#### Activity Performed
+### Activity Performed
 
 Used ShellGPT to assist with web application security testing by generating penetration testing commands, explaining security concepts, and supporting vulnerability assessment activities during the engagement.
 
 ---
 
-#### Observations
+### Observations
 
 - AI generated penetration testing commands based on user prompts.
 - Security concepts and tool usage were explained interactively.
@@ -507,7 +477,7 @@ Used ShellGPT to assist with web application security testing by generating pene
 
 ---
 
-#### AI-Assisted Security Testing
+### AI-Assisted Security Testing
 
 ![ShellGPT](Images/Lab4-ShellGPT.png)
 
@@ -515,7 +485,7 @@ Used ShellGPT to assist with web application security testing by generating pene
 
 ---
 
-#### Learning Outcome
+### Learning Outcome
 
 This task demonstrated that AI can serve as an effective assistant during penetration testing by improving efficiency and learning. However, successful security assessments still depend on the knowledge, judgment, and validation performed by the penetration tester.
 
@@ -544,19 +514,9 @@ flowchart TD
 
 ---
 
-### Overall Learning Outcome
+## Overall Learning Outcome
 
 This lab demonstrated how Artificial Intelligence can enhance penetration testing workflows by assisting with command generation, concept explanation, and security analysis. Rather than replacing penetration testers, AI serves as a productivity tool that supports informed decision-making while requiring continuous human validation.
-
----
-
-### Key Takeaways
-
-- AI improves efficiency during penetration testing.
-- AI can assist with command generation and security analysis.
-- AI-generated output should always be reviewed before execution.
-- Human expertise remains essential for validating findings.
-- AI is an assistant, not a replacement for penetration testers.
 
 ---
 
