@@ -6,7 +6,7 @@
 >
 > **Labs Completed:** 6
 >
-> **Tools Covered:** *(To be updated after completing all labs.)*
+> **Tools Covered:** Responder, John the Ripper, Reverse Shell Generator, MSFVenom, Metasploit, Immunity Debugger, Spike, Mona, Netcat, Refog Personal Monitor, Registry Editor, wevtutil, Cipher, BASH, Nmap, Impacket, CrackMapExec, Remmina, PowerView, Hydra, WinPEAS, Rubeus, Hashcat, ShellGPT
 
 ---
 
@@ -73,7 +73,30 @@ After completing this module, I was able to:
 
 # Tools Used
 
-*(To be updated after completing all labs.)*
+- [Responder](../../Tools/Responder.md)
+- [John the Ripper](../../Tools/John-the-Ripper.md)
+- [Reverse Shell Generator](../../Tools/Reverse-Shell-Generator.md)
+- [Metasploit](../../Tools/Metasploit.md)
+- [MSFVenom](../../Tools/MSFVenom.md)
+- [Immunity Debugger](../../Tools/Immunity-Debugger.md)
+- [Spike](../../Tools/Spike.md)
+- [Mona](../../Tools/Mona.md)
+- [Netcat](../../Tools/Netcat.md)
+- [Refog Personal Monitor](../../Tools/Refog-Personal-Monitor.md)
+- [Registry Editor](../../Tools/Registry-Editor.md)
+- [wevtutil](../../Tools/wevtutil.md)
+- [Cipher](../../Tools/Cipher.md)
+- [BASH](../../Tools/BASH.md)
+- [Nmap](../../Tools/Nmap.md)
+- [Impacket](../../Tools/Impacket.md)
+- [CrackMapExec](../../Tools/CrackMapExec.md)
+- [Remmina](../../Tools/Remmina.md)
+- [PowerView](../../Tools/PowerView.md)
+- [Hydra](../../Tools/Hydra.md)
+- [WinPEAS](../../Tools/WinPEAS.md)
+- [Rubeus](../../Tools/Rubeus.md)
+- [Hashcat](../../Tools/Hashcat.md)
+- [ShellGPT](../../Tools/ShellGPT.md)
 
 ---
 
