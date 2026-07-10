@@ -1676,7 +1676,7 @@ This lab demonstrated how Artificial Intelligence can enhance penetration testin
 
 ---
 
-## Key Takeaways
+# Key Takeaways
 
 - Understood the complete Windows system hacking lifecycle, from gaining initial access to maintaining persistence and covering tracks.
 - Performed password attacks using Responder, John the Ripper, Hydra, and Active Directory credential attack techniques.
@@ -1690,13 +1690,13 @@ This lab demonstrated how Artificial Intelligence can enhance penetration testin
 
 ---
 
-## Defensive Perspective
+# Defensive Perspective
 
 The techniques demonstrated throughout this module highlight the importance of implementing layered security controls to defend Windows and Active Directory environments. Organizations should enforce strong password policies, enable Kerberos pre-authentication, apply the principle of least privilege, harden Windows services, restrict registry modifications, disable unnecessary features such as **xp_cmdshell**, and continuously patch operating systems and applications. Security teams should also deploy centralized logging, monitor authentication events, detect privilege escalation attempts, audit Active Directory activities, and regularly review persistence mechanisms to identify and respond to malicious behavior before it leads to a full system compromise.
 
 ---
 
-## Interview Questions
+# Interview Questions
 
 1. What are the four phases of system hacking?
 2. How does Responder exploit LLMNR and NBT-NS to capture credentials?
@@ -1713,7 +1713,7 @@ The techniques demonstrated throughout this module highlight the importance of i
 
 ---
 
-## My Reflection
+# My Reflection
 
 This module provided practical experience in the complete system hacking process, from gaining initial access to achieving full system and Active Directory compromise. By combining multiple techniques—including credential attacks, privilege escalation, persistence, anti-forensics, and AI-assisted penetration testing—I developed a deeper understanding of how attackers chain vulnerabilities together during real-world engagements. Equally important, the module emphasized the defensive measures required to secure Windows systems and enterprise Active Directory environments against these attack techniques.
 
