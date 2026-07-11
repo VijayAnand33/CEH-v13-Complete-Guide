@@ -54,7 +54,9 @@ After completing this module, you will be able to:
 
 # Tools Used
 
-*(To be completed after documenting all labs.)*
+- [Social-Engineer Toolkit (SET)](../../Tools/Social-Engineer-Toolkit-SET.md)
+- [Netcraft](../../Tools/Netcraft.md)
+- [ChatGPT](../../Tools/ChatGPT.md)
 
 ---
 
