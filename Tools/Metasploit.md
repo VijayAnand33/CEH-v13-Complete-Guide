@@ -142,6 +142,8 @@ In **Module 03 – Scanning Networks**, Metasploit was used as a reconnaissance 
 
 In **Module 06 – System Hacking**, Metasploit was extensively used throughout the system hacking lifecycle to establish Meterpreter sessions, generate listeners, bypass User Account Control (UAC), elevate privileges, deploy persistence mechanisms such as Sticky Keys and Run Registry modifications, and maintain remote access to compromised Windows systems.
 
+During **Module 12 – Evading IDS, Firewalls, and Honeypots**, the Metasploit Framework was used to generate a Windows Meterpreter payload (`msfvenom`) that was hosted on an Apache web server. The payload was later transferred to the target machine using Windows BITSAdmin, demonstrating how attackers combine trusted system utilities with malicious payloads to evade firewall restrictions and deliver malware.
+
 ---
 
 ## Advantages
@@ -179,6 +181,7 @@ In **Module 06 – System Hacking**, Metasploit was extensively used throughout 
 - Module 03 – Scanning Networks
 - Module 06 – System Hacking
 - Module 10 – Denial-of-Service
+- Module 12 – Evading IDS, Firewalls, and Honeypots
 
 ---
 
