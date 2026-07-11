@@ -124,6 +124,7 @@ During **Module 16 – Hacking Wireless Networks**, Wireshark was used to analyz
 
 - Module 03 – Scanning Networks
 - Module 08 – Sniffing
+- Module 10 – Denial-of-Service
 - Module 16 – Hacking Wireless Networks
 
 ---

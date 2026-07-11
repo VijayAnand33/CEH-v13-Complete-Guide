@@ -373,3 +373,42 @@ flowchart TD
 This lab demonstrated how generative AI can be used to simulate realistic phishing emails for authorized security awareness assessments. By observing how quickly AI produces convincing social engineering content, it reinforced the importance of employee training, email verification, multi-factor authentication, and organizational policies designed to reduce the effectiveness of AI-assisted phishing attacks.
 
 ---
+
+# Key Takeaways
+
+- Understood how attackers exploit human psychology rather than technical vulnerabilities to compromise systems.
+- Performed a credential harvesting attack using the Social-Engineer Toolkit (SET) by cloning a legitimate website and capturing user credentials.
+- Learned how phishing emails can deceive users through disguised hyperlinks and cloned login pages.
+- Explored phishing detection techniques using the Netcraft browser extension to analyze website reputation and identify malicious domains.
+- Observed how browser-based reputation services help prevent users from accessing known phishing websites.
+- Explored the use of generative AI to create realistic phishing email content for authorized security awareness exercises.
+- Reinforced the importance of user awareness, verification of website authenticity, and multi-factor authentication in defending against social engineering attacks.
+
+---
+
+# Defensive Perspective
+
+Social engineering attacks bypass technical defenses by targeting human behavior instead of software vulnerabilities. Organizations should implement comprehensive security awareness training, enforce multi-factor authentication, verify website authenticity, deploy email filtering and browser reputation services, and establish clear procedures for validating unexpected requests. Regular phishing simulations, continuous employee education, and strong reporting mechanisms help reduce the success rate of phishing campaigns and other social engineering attacks.
+
+---
+
+# Interview Questions
+
+1. What is social engineering, and why is it effective against organizations?
+2. What is credential harvesting?
+3. Explain how the Social-Engineer Toolkit (SET) performs a credential harvesting attack.
+4. What is the difference between phishing and spear phishing?
+5. How can users identify phishing emails and malicious websites?
+6. What role does Netcraft play in phishing detection?
+7. Why are browser reputation services important for cybersecurity?
+8. How can multi-factor authentication reduce the impact of credential theft?
+9. How can generative AI be used during authorized security awareness assessments?
+10. What defensive measures should organizations implement to protect against social engineering attacks?
+
+---
+
+# My Reflection
+
+This module provided practical experience in understanding how attackers manipulate human behavior to compromise systems through phishing and credential harvesting techniques. By performing controlled social engineering assessments, detecting phishing websites, and exploring the role of AI in generating realistic phishing content for security awareness exercises, I developed a deeper understanding of both the offensive techniques used by attackers and the defensive measures required to strengthen human-centered cybersecurity within organizations.
+
+---
