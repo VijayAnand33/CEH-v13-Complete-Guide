@@ -62,11 +62,13 @@ After completing this module, you will be able to:
 
 # Labs Covered
 
-| Lab | Title | Status |
-|------|------------------------------------------------|:------:|
-| Lab 1 | Perform Social Engineering using Various Techniques | ✅ |
-| Lab 2 | Detect a Phishing Attack | ✅ |
-| Lab 3 | Social Engineering using AI | ✅ |
+| Lab | Description |
+|-----|-------------|
+| Lab 1 | Perform Social Engineering using Various Techniques |
+| Lab 2 | Detect a Phishing Attack |
+| Lab 3 | Social Engineering using AI |
+
+---
 
 ---
 
