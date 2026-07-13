@@ -141,6 +141,7 @@ The server responded with HTTP headers containing information about the web serv
 
 ## Used In
 
+- Module 13 – Hacking Web Servers
 - Module 14 – Web Application Hacking
 
 ---

@@ -124,6 +124,7 @@ In **Module 06 – System Hacking**, Hydra was used to perform a dictionary atta
 ## Used In
 
 - Module 06 – System Hacking
+- Module 13 – Hacking Web Servers
 
 ---
 

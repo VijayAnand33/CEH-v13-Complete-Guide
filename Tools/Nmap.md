@@ -164,6 +164,7 @@ The aggressive scan provided information such as:
 - Module 06 – System Hacking
 - Module 08 – Sniffing
 - Module 12 – Evading IDS, Firewalls, and Honeypots
+- Module 13 – Hacking Web Servers
 - Module 14 – Web Application Hacking
 
 ---

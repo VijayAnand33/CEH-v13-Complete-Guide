@@ -162,6 +162,7 @@
  - Module 03 – Scanning Networks
  - Module 04 – Enumeration
  - Module 06 – System Hacking
+ - Module 13 – Hacking Web Servers
  - Module 14 – Web Application Hacking
  - Module 15 – SQL Injection
 
