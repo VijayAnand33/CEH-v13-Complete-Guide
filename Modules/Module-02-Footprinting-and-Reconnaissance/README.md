@@ -602,8 +602,8 @@ This lab demonstrates how tracerouting can be performed using both Windows (`tra
 
 #### Tools Used
 
-- [tracert](../../Tools/tracert.md)
-- [traceroute](../../Tools/traceroute.md)
+- [tracert](../../Tools/Traceroute.md)
+- [traceroute](../../Tools/Traceroute.md)
 
 ---
 
