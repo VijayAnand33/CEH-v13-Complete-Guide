@@ -4,7 +4,7 @@
 
 <p align="center">
   <strong>
-    A professionally organized CEH v13 documentation repository covering all 20 modules with detailed theory, practical labs, tool documentation, attack workflows, diagrams, screenshots, defensive concepts, interview preparation, and cybersecurity study resources.s
+    A professionally organized CEH v13 documentation repository covering all 20 modules with detailed theory, practical labs, cybersecurity tool documentation, attack workflows, diagrams, screenshots, defensive concepts, and interview preparation.
   </strong>
 </p>
 
@@ -23,8 +23,7 @@
 ![CEH](https://img.shields.io/badge/CEH-v13-blue?style=for-the-badge)
 ![Modules](https://img.shields.io/badge/Modules-20-success?style=for-the-badge)
 ![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge)![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 </p>
 
@@ -37,30 +36,29 @@
 
 # 📚 Repository Highlights
 
-- 📖 Complete documentation covering all **20 CEH v13 modules**
-- 🧪 Detailed practical lab documentation
-- 🛠 Comprehensive cybersecurity tool documentation
-- 📸 Practical screenshots and walkthroughs
-- 🔄 Attack workflow diagrams
-- 🛡 Defensive concepts and mitigation techniques
-- 💡 Key takeaways and learning outcomes
-- ❓ Interview preparation questions
-- 📝 Cheat sheets and study resources
+- 📚 Complete CEH v13 Module Documentation (20 Modules)
+- 🛠️ 90+ Cybersecurity Tool Documentations
+- 🧪 Practical Labs with Step-by-Step Walkthroughs
+- 📸 Screenshots and Practical Demonstrations
+- 🎯 CEH Exam-Oriented Explanations
+- 📖 Beginner to Advanced Learning Resource
 - 📂 Professionally organized documentation
 
 ---
 
-# 📂 Repository Structure
+## 📂 Repository Structure
 
 ```text
 CEH-v13-Complete-Guide/
 │
-├── Assets/
-├── Cheat-Sheets/
-├── Modules/
-├── Resources/
-├── ROADMAP.md
-└── README.md
+├── Assets/                 # Repository banners, logos, and images
+├── Modules/                # Complete CEH v13 module documentation
+├── Tools/                  # 90+ cybersecurity tool documentations
+│
+├── README.md               # Repository homepage
+├── CONTRIBUTING.md         # Contribution guidelines
+├── LICENSE                 # MIT License
+└── .gitignore              # Git ignore rules
 ```
 
 ---
@@ -71,9 +69,6 @@ CEH-v13-Complete-Guide/
 |---------|-------------|
 | 📖 [Modules](Modules/) | Complete documentation for all 20 CEH v13 modules. |
 | 🛠 [Tool Documentation](Tools/README.md) | Explore 90+ documented cybersecurity tools used throughout the CEH curriculum. |
-| 📚 [Cheat Sheets](Cheat-Sheets/) | Quick-reference notes and command summaries. |
-| 📂 [Resources](Resources/) | Additional learning materials and references. |
-| 🗺 [Learning Roadmap](ROADMAP.md) | Structured roadmap for mastering CEH v13. |
 
 ---
 
@@ -152,7 +147,6 @@ By completing this repository, you will be able to:
 
 The repository also includes:
 
-- 📄 Cheat Sheets
 - 🛠 Tool Documentation
 - 📸 Practical Screenshots
 - 🔄 Attack Workflow Diagrams
@@ -171,7 +165,7 @@ If this repository helped you during your CEH preparation:
 - 🍴 Fork this repository
 - 📢 Share it with fellow cybersecurity learners
 
-Your support motivates continuous improvements and future cybersecurity documentation.
+Your support helps others discover this repository and supports the open-source cybersecurity community.
 
 ---
 
