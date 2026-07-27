@@ -11,7 +11,8 @@
 ---
 
 [Modules](#-module-navigation) •
-[Tools](#-tools-covered) •
+[Exam Notes](#-ceh-exam-preparation-notes) •
+[Tools](#-tool-documentation) •
 [Resources](#-additional-resources) •
 [License](#-license) •
 [Author](#-author)
@@ -37,12 +38,13 @@
 # 📚 Repository Highlights
 
 - 📚 Complete CEH v13 Module Documentation (20 Modules)
+- 📝 CEH Exam Preparation Notes (20 Modules)
 - 🛠️ 90+ Cybersecurity Tool Documentations
 - 🧪 Practical Labs with Step-by-Step Walkthroughs
 - 📸 Screenshots and Practical Demonstrations
+- 🔄 Attack Workflows and Visual Diagrams
 - 🎯 CEH Exam-Oriented Explanations
 - 📖 Beginner to Advanced Learning Resource
-- 📂 Professionally organized documentation
 
 ---
 
@@ -53,6 +55,7 @@ CEH-v13-Complete-Guide/
 │
 ├── Assets/                 # Repository banners, logos, and images
 ├── Modules/                # Complete CEH v13 module documentation
+├── ExamPrep_Notes/         # Exam-oriented revision notes for all 20 modules
 ├── Tools/                  # 90+ cybersecurity tool documentations
 │
 ├── README.md               # Repository homepage
@@ -68,6 +71,7 @@ CEH-v13-Complete-Guide/
 | Section | Description |
 |---------|-------------|
 | 📖 [Modules](Modules/) | Complete documentation for all 20 CEH v13 modules. |
+| 📝 [Exam Preparation Notes](ExamPrep_Notes/) | Exam-focused revision notes for every CEH module, including key concepts, comparisons, workflows, memory aids, and practice questions. |
 | 🛠 [Tool Documentation](Tools/README.md) | Explore 90+ documented cybersecurity tools used throughout the CEH curriculum. |
 
 ---
@@ -121,6 +125,40 @@ This repository includes **90+ documented cybersecurity tools** used throughout 
 | ⚙ System & Administrative Utilities | Windows/Linux administration and forensic utilities |
 
 📁 **Browse the complete tool documentation:** **[Tool Documentation](Tools/README.md)**
+
+---
+
+---
+
+# 📝 CEH Exam Preparation Notes
+
+In addition to the complete CEH v13 module documentation and tool references, this repository includes a dedicated **ExamPrep_Notes** directory containing exam-oriented revision notes for every CEH module.
+
+These notes are designed specifically for certification preparation, focusing on high-yield concepts, commonly tested topics, comparison tables, attack methodologies, recognition keywords, memory aids, practical workflows, and CEH-style practice questions.
+
+## 📂 Location
+
+```text
+ExamPrep_Notes/
+├── Module-01-Ethical-Hacking-Foundations.md
+├── Module-02-Footprinting-and-Reconnaissance.md
+├── Module-03-Scanning-Networks.md
+├── ...
+└── Module-20-Cryptography.md
+```
+
+## 📚 What You'll Find
+
+- 🎯 CEH exam-focused theory
+- 🧠 High-yield concepts and terminology
+- ⚖️ Comparison tables for commonly confused topics
+- 🚩 Recognition keywords and exam tips
+- 🔄 Attack workflows and methodologies
+- 💡 Memory aids and quick revision notes
+- 🛠 Frequently used tools and commands
+- ❓ CEH-style practice questions and scenarios
+
+These notes complement the practical module documentation, providing a structured resource for both hands-on learning and final exam revision.
 
 ---
 
