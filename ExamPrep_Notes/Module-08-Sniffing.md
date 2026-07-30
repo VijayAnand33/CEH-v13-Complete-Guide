@@ -3,6 +3,33 @@
 
 ## Tier 1: Theoretical Underpinnings
 
+### Supplementary Protocol Foundations
+
+**Address Resolution Protocol (ARP)**
+* **Basic Definition:** A Layer 2 (Data Link Layer) network protocol used to map a known 32-bit Internet Protocol (IP) address (Layer 3) to an unknown 48-bit Media Access Control (MAC) address (Layer 2) on a local area network (LAN).
+* **Operation Flow:**
+  1. **ARP Request (`Opcode 1`):** Sent as a broadcast frame (`FF:FF:FF:FF:FF:FF`) asking *"Who has IP X.X.X.X? Tell IP Y.Y.Y.Y"*.
+  2. **ARP Reply (`Opcode 2`):** The owner of the IP responds with a unicast frame stating *"IP X.X.X.X is at MAC AA:BB:CC:DD:EE:FF"*.
+* **CEH Vulnerability Key:** ARP is stateless and has no built-in authentication. Operating systems automatically accept and cache **unsolicited ARP replies** (`Opcode 2`) even if they never sent a matching request, enabling **ARP Poisoning / Spoofing**.
+
+**Dynamic Host Configuration Protocol (DHCP)**
+* **Basic Definition:** A Layer 7 network management protocol operating over UDP ports 67 (Server) and 68 (Client) that automatically assigns IP addresses, subnet masks, default gateways, DNS server addresses, and lease times to network endpoints.
+* **Operation Flow (DORA Process):**
+  1. **Discover (`DHCPDISCOVER`):** Client broadcasts a request across the local subnet searching for available DHCP servers.
+  2. **Offer (`DHCPOFFER`):** DHCP server(s) unicast or broadcast a proposed IP configuration to the requesting client.
+  3. **Request (`DHCPREQUEST`):** Client broadcasts acceptance of the offered IP settings back to the network.
+  4. **Acknowledge (`DHCPACK`):** Server sends final unicast acknowledgment confirming the IP address assignment and lease duration.
+* **CEH Vulnerability Key:** Unauthenticated DHCP servers can respond to `DHCPDISCOVER` frames (**Rogue DHCP Attack**), and servers do not limit how many IP requests a single interface can make, enabling **DHCP Starvation**.
+
+**Spanning Tree Protocol (STP)**
+* **Basic Definition:** A Layer 2 network protocol (IEEE 802.1D) designed to prevent physical switching loops in redundant network topologies by blocking redundant paths and establishing a logical loop-free tree topology.
+* **Operation Flow:** Switches exchange Bridge Protocol Data Units (**BPDUs**) to elect a **Root Bridge** based on the lowest Bridge ID (Priority + MAC Address).
+* **CEH Vulnerability Key:** Attackers transmit forged BPDU frames with a Bridge Priority of `0` using tools like **Yersinia** to force the switch cluster to elect the attacker's system as the Root Bridge, redirecting Layer 2 traffic through the attacker's port.
+
+**Dynamic Trunking Protocol (DTP)**
+* **Basic Definition:** A proprietary Cisco Layer 2 protocol used to automatically negotiate 802.1Q VLAN trunking between two switch ports.
+* **CEH Vulnerability Key:** Switch ports configured in default `Dynamic Auto` or `Dynamic Desirable` modes can be tricked into establishing an active trunk link with an attacker sending forged DTP negotiation frames (**VLAN Hopping Attack**), granting access to all internal VLAN traffic.
+
 ### 1. Sniffing Fundamentals & Network Architecture
 
 ```
