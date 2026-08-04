@@ -1,7 +1,6 @@
 # Module 03: Scanning Networks
 
-## 3.1 Network Scanning Concepts & TCP Basics
-
+## Tier 1: Core Concepts & Principles
 * **Scanning Phase:** The 2nd phase of ethical hacking (preceded by Reconnaissance, followed by Enumeration). Used to identify active live hosts, open ports, running services, OS versions, and vulnerabilities.
 * **Types of Scanning:**
   * **Network Scanning:** Locating active hosts on a network subnet.
@@ -17,7 +16,7 @@
 
 ---
 
-## 3.2 Host Discovery Techniques
+## Tier 2: Technical Analysis & Mechanics
 
 ### Layer 2 & Layer 3 Live Host Discovery
 * **ARP Ping Scan (`nmap -sn -PR`):** Probes hosts on the local Layer 2 broadcast domain. Bypasses host-based firewalls because ARP traffic cannot be blocked without breaking local communication.
@@ -30,11 +29,9 @@
 * **IP Protocol Scan (`nmap -sO`):** Iterates through IP protocol headers (ICMP=1, IGMP=2, TCP=6, UDP=17) to discover supported transport protocols.
 * **IPv6 Host Discovery:** Traditional scanning of large 64-bit IPv6 subnets ($2^{64}$ addresses) via brute-force is infeasible. Attackers discover IPv6 addresses via email headers, Usenet, DNS logs, or by probing the link-local all-hosts multicast address `FF02::1` once a single local host is compromised.
 
----
+### Advanced Port Scanning Methods & Flag Mechanics
 
-## 3.3 Advanced Port Scanning Methods & Flag Mechanics
-
-### Comprehensive Scan Matrix
+#### Comprehensive Scan Matrix
 
 | Scan Name | Nmap Flag | Packet Flow & Flags Set | Open Port Response | Closed Port Response | Filtered / Firewall Response |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -51,11 +48,7 @@
 
 > **RFC 793 Rule:** FIN, NULL, and Xmas scans rely on RFC 793 behavior where closed ports reply with `RST` and open ports drop unexpected packets. **Windows systems violate RFC 793** and return `RST` for all ports, making inverse scans ineffective against Windows targets.
 
----
-
-## 3.4 Service & OS Fingerprinting (Banner Grabbing)
-
-### Fingerprinting Techniques
+### Service & OS Fingerprinting (Banner Grabbing)
 * **Active Banner Grabbing (`nmap -sV` / Telnet / Netcat / `hping3`):** Probes open ports with specific payload requests to elicit detailed service banner strings, software names, and version numbers.
 * **Passive Banner Grabbing:** Captures and analyzes network packets in transit (e.g., via Wireshark) without sending probe packets directly to the target system.
 * **Active OS Fingerprinting (`nmap -O`):** Probes target systems with illegal or non-standard TCP/UDP packets and analyzes TCP Window Size, IP TTL, Don't Fragment (DF) flags, and Explicit Congestion Notification (ECN) behavior against a signature database.
@@ -63,9 +56,9 @@
 
 ---
 
-## 3.5 Firewall Evasion, Obfuscation & Anonymization
+## Tier 3: Tools, Syntax & Evasion Techniques
 
-### Evasion Techniques & Commands
+### Firewall Evasion, Obfuscation & Anonymization
 * **Packet Fragmentation (`nmap -f` or `--mtu <bytes>`):** Breaks IP headers across smaller 8-byte fragment blocks to bypass stateless packet filters incapable of packet reassembly.
 * **IP Decoy Scanning (`nmap -D RND:10,ME`):** Mixes spoofed IP addresses alongside the attacker's true IP address to clutter target log files.
 * **Source Port Manipulation (`nmap --source-port 53` or `-g 80`):** Forces Nmap to originate probe traffic from trusted service ports (e.g., DNS `53` or HTTP `80`) to bypass restrictive inbound security rules.
@@ -79,10 +72,7 @@
 * **Proxy Chains (`proxychains`):** Routes traffic sequentially through multiple HTTP, SOCKS4, or SOCKS5 proxy servers to mask origin IP addresses.
 * **Tor (The Onion Router):** Routes encrypted traffic through a decentralized network of volunteer-operated relays (Entry Node $\rightarrow$ Middle Relay $\rightarrow$ Exit Node) to provide online anonymity.
 
----
-
-## 3.6 Tooling Reference Summary
-
+### Tooling Reference Summary
 * **Nmap:** Primary open-source network scanner supporting host discovery, port scanning, OS detection, NSE scripts, and evasion.
 * **Hping3:** Command-line packet generator and analyzer capable of sending custom TCP/IP packets:
   * *SYN Scan:* `hping3 -S <IP> -p 80`
@@ -95,8 +85,38 @@
 
 ---
 
-## 3.7 Countermeasures & Defense
-
+## Tier 4: Real-World Countermeasures & Defense
 * **Firewall Rules:** Configure stateful inspection firewalls to drop unsolicited TCP probe packets and enforce strict egress filtering.
 * **IDS/IPS Signatures:** Deploy intrusion detection rules (e.g., Snort) to flag abnormal TCP flag combinations (`FIN+PSH+URG` Xmas, `NULL` flag scans, high-frequency port sweeps).
 * **System Hardening:** Disable unnecessary network services, hide service versions in HTTP/SMTP server headers (banner scrubbing), and tune TCP/IP stacks to resist idle scanning.
+
+---
+
+## Tier 5: Exam Key Hooks & Rapid Triggers
+
+| Concept / Mechanism | High-Yield Exam Trigger | Critical Distinction |
+| :--- | :--- | :--- |
+| **ARP Ping Scan (`-PR`)** | Local Layer 2 broadcast domain discovery | Bypasses host firewalls; ARP cannot be blocked on local LAN |
+| **ICMP Echo Ping (`-PE`)** | Sends ICMP Type 8 (Echo Request) | Responds with ICMP Type 0 (Reply); frequently blocked by edge firewalls |
+| **ICMP Timestamp Ping (`-PP`)** | Sends ICMP Type 13 (Timestamp Request) | Obtains target clock time; bypasses Type 8 ICMP filters |
+| **ICMP Address Mask Ping (`-PM`)** | Sends ICMP Type 17 | Queries target subnet masks |
+| **UDP Ping Sweep (`-PU`)** | Probes high/closed UDP ports | Live host returns **ICMP Type 3 Code 3** (*Port Unreachable*) |
+| **TCP Connect Scan (`-sT`)** | Completes full 3-Way Handshake | Non-root execution; easily logged by target system |
+| **Stealth / SYN Scan (`-sS`)** | Half-open scan (`SYN` $\rightarrow$ `SYN/ACK` $\rightarrow$ `RST`) | Default scan; requires root/admin privileges |
+| **Inverse FIN Scan (`-sF`)** | Only `FIN` flag set | Open port = No Response; Closed port = `RST` |
+| **Inverse NULL Scan (`-sN`)** | All control flags turned OFF (`0`) | Open port = No Response; Closed port = `RST` |
+| **Xmas Scan (`-sX`)** | Flags set: `FIN`, `URG`, `PSH` | "Lit up like a Christmas tree"; Open = No Response, Closed = `RST` |
+| **ACK Scan (`-sA`)** | Tests firewall statefulness | Unfiltered returns `RST`; Filtered gives No Response |
+| **TCP Window Scan (`-sW`)** | Examines TCP Window Size in returned `RST` | Positive Window ($>0$) = Open; Zero Window ($0$) = Closed |
+| **Maimon Scan (`-sM`)** | Flags set: `FIN/ACK` | Open port = No Response; Closed port = `RST` |
+| **IDLE / Zombie Scan (`-sI`)** | Blind scan via idle host's predictable IP ID | Open port increments Zombie IP ID by **2**; Closed/Filtered by **1** |
+| **UDP Scan (`-sU`)** | Probes connectionless services | Closed port returns **ICMP Type 3 Code 3** (*Port Unreachable*) |
+| **Windows RFC 793 Violation** | Inverse scans (`-sF`, `-sN`, `-sX`) fail | Windows returns `RST` for all ports regardless of state |
+| **Active OS Fingerprinting (`-O`)** | Analyzes TTL, TCP Window Size, DF flags | Probes target using non-standard packets against signature DB |
+| **Aggressive Scan (`-A`)** | Runs 4 distinct operations in 1 command | Combines OS detection (`-O`), Service Version (`-sV`), Scripts (`-sC`), Traceroute |
+| **Packet Fragmentation (`-f`)** | Breaks IP headers into 8-byte blocks | Bypasses stateless packet filters incapable of packet reassembly |
+| **Decoy Scan (`-D`)** | Mixes real IP with fake source IPs (`RND:10,ME`) | Clutters target log files |
+| **Source Port Manipulation (`-g`)** | Forces traffic from DNS port `53` or HTTP `80` | Bypasses restrictive inbound rules filtering by source port |
+| **Firewalking** | Probe firewall ACL rules via TTL + 1 | Packet expires at internal router returning **ICMP Type 11 Code 0** |
+| **IPv6 Host Discovery** | $2^{64}$ address space makes brute-force infeasible | Uses email headers, DNS logs, or link-local multicast `FF02::1` |
+| **Hping3 Custom Packets** | CLI packet generator/analyzer | `hping3 -S` (SYN), `hping3 -A` (ACK), `hping3 -F -P -U` (Xmas) |
