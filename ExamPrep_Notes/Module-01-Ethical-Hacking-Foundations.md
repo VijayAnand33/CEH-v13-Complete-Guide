@@ -47,10 +47,19 @@
 ---
 
 ## Tier 3: Legal & Organizational Standards
-* **Rules of Engagement (RoE):** Formal document signed by authority defining allowed scope, target IP ranges, testing windows, and restricted techniques before testing begins.
-* **CFAA (Computer Fraud and Abuse Act):** Primary U.S. anti-hacking legislation prosecuting unauthorized access or exceeding authorized access.
-* **GDPR:** EU data protection regulation requiring notification of personal data breaches to regulatory bodies within **72 hours**.
-* **PCI-DSS:** Payment industry compliance standard requiring quarterly vulnerability scans by Authorized Scanning Vendors (ASVs) and annual security assessments.
+
+### Legal Compliance & Governance
+* **Rules of Engagement (RoE):** Formal document signed by executive authority defining allowed testing methods, IP ranges, testing time windows, emergency contacts, and explicit boundaries before any testing begins.
+* **NDA (Non-Disclosure Agreement):** Legally binding agreement signed *before* exchanging sensitive data or target lists to ensure confidential disclosures remain protected.
+* **SOW (Statement of Work):** Defines exact project deliverables, technical tasks, milestones, timelines, and payment structures for a specific assessment.
+* **MSA (Master Services Agreement):** Overarching baseline contract between a testing firm and client governing long-term project terms, liabilities, and legal responsibilities.
+* **SLA (Service Level Agreement):** Outlines performance standards and availability thresholds to ensure penetration testing activities do not degrade client operational systems.
+* **Scope:** Defines strictly approved systems/networks. Attacking any host outside this document constitutes unauthorized hacking under federal law.
+
+### Cyber Laws & Compliance Frameworks
+* **CFAA (Computer Fraud and Abuse Act):** Primary U.S. legislation prohibiting unauthorized access or exceeding authorized access to protected computers.
+* **GDPR:** EU data privacy regulation requiring mandatory data breach notification to supervisory authorities within **72 hours**.
+* **PCI-DSS:** Credit card processing standard mandating quarterly vulnerability scans by Authorized Scanning Vendors (ASVs) and annual security audits.
 
 ---
 
