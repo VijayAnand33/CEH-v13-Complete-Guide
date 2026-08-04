@@ -1,120 +1,164 @@
 # Module 01: Ethical Hacking Foundations
 
-## 1.1 Information Security Concepts & Elements
-
-### Core Security Principles
-* **Information Security (InfoSec):** Protection of information and information systems from unauthorized access, use, disclosure, disruption, modification, or destruction.
-* **The CIA Triad:**
-  * **Confidentiality:** Ensures data is accessible only to authorized individuals.
-    * *Controls:* Encryption (AES, RSA), Access Control Lists (ACLs), Data Classification, Multi-Factor Authentication (MFA).
-  * **Integrity:** Guarantees data accuracy and guards against unauthorized modification or deletion.
-    * *Controls:* Cryptographic Hashing (SHA-256, SHA-3), Digital Signatures, Version Control, Checksums.
-  * **Availability:** Ensures timely and reliable access to resources for authorized users.
-    * *Controls:* High Availability (HA), Load Balancing, Disaster Recovery (DR), Data Backups, DDoS Mitigation.
-
-### Essential Security Terminology
-* **Authenticity:** Verification that a user, message, or system is genuine and holds valid credentials.
-* **Non-Repudiation:** Proof of origin and integrity of data ensuring a sender cannot deny sending a message (achieved via Public Key Infrastructure and Digital Signatures).
-* **Vulnerability:** Weakness or flaw in software, hardware, or system procedures that can be exploited.
-* **Threat:** Any potential cause of an unwanted incident that could harm a system or organization.
-* **Exploit:** Executable code, script, or sequence of commands that takes advantage of a vulnerability.
-* **Zero-Day Attack:** Attack that exploits an unknown software vulnerability before the vendor releases a patch.
-* **Payload:** The part of the exploit code or malware that performs the malicious action on the target host.
-
-### Risk Management
-* **Risk Definition:** Probability of a threat exploiting a vulnerability and the resulting business impact.
-* **Risk Formula:** $\text{Risk} = \text{Threat} \times \text{Vulnerability} \times \text{Impact}$
-* **Risk Response Strategies:**
-  * **Risk Avoidance:** Eliminating the risk entirely by removing the vulnerable asset or activity.
-  * **Risk Mitigation:** Implementing security controls to reduce likelihood or impact.
-  * **Risk Transfer:** Shifting risk responsibility to a third party (e.g., Cyber Insurance).
-  * **Risk Acceptance:** Acknowledging and absorbing the risk when mitigation costs exceed potential loss.
+## Tier 1: Core Concepts & Definitions
+* **Confidentiality:** Assures that information and system resources are accessible only to authorized entities, preventing unauthorized access or disclosure.
+* **Integrity:** Guarantees the trustworthiness, accuracy, and completeness of data by safeguarding it against unauthorized modification, deletion, or tampering.
+* **Availability:** Ensures that systems, networks, and applications are continuously accessible and operational for authorized users when needed.
+* **Authenticity:** Confirms the identity of a user, process, system, or data origin before granting access or establishing trust.
+* **Non-Repudiation:** Provides cryptographic and logging proof of data transmission or actions performed, preventing an entity from denying its involvement.
+* **Vulnerability Assessment:** Scans, identifies, and categorizes technical weaknesses and misconfigurations in a system or network **without** attempting exploitation.
+* **Penetration Testing:** Actively verifies security posture by exploiting identified vulnerabilities to determine the real-world operational impact and breach depth.
+* **Black-Box Testing:** Testing performed with zero prior internal knowledge of the target environment, simulating an external adversary relying heavily on OSINT.
+* **White-Box Testing:** Testing performed with complete internal access to architecture documentation, source code, network diagrams, and system configurations.
+* **Gray-Box Testing:** Testing performed with partial knowledge, such as non-privileged user access or internal subnet ranges, simulating an insider threat or compromised account.
 
 ---
 
-## 1.2 Cyber Attack Vectors & Threat Intelligence
+## Tier 2: Deep-Dive Technical Analysis & Frameworks
 
-### Primary Attack Vectors
-* **Social Engineering:** Manipulating individuals into divulging confidential information (e.g., Phishing, Vishing, Spear Phishing, Baiting).
-* **Malware Attacks:** Infiltrating systems using malicious software (Trojans, Ransomware, Keyloggers, Rootkits).
-* **Drive-by Downloads:** Unintentional download of malicious code initiated by visiting a compromised website.
-* **Insider Threats:** Malicious or careless activities performed by individuals with legitimate internal access.
-* **Supply Chain Attacks:** Exploiting vulnerabilities within third-party vendors, suppliers, or software dependencies.
-* **Advanced Persistent Threats (APTs):** Long-term, highly targeted, stealthy cyberattacks executed by well-funded adversaries.
+### Security Control Classifications
+* **Preventive:** Blocks unauthorized access, attacks, or security policy violations before execution (e.g., Firewalls, IPS, Access Control Lists, MFA).
+* **Detective:** Identifies, logs, and alerts on malicious activity during or immediately after execution (e.g., IDS, SIEM correlation rules, EDR, Audit Logging).
+* **Corrective:** Restores system posture, mitigates damage, and repairs configurations post-incident (e.g., Patch management deployment, system re-imaging, automated script isolation).
+* **Deterrent:** Discourages malicious actors from attempting an attack through psychological or policy warnings (e.g., Legal warning banners, visible CCTV).
+* **Compensating:** Alternative security control implemented when primary controls are technically or operationally unfeasible (e.g., Network microsegmentation for legacy unpatchable systems).
+* **Recovery:** Restores essential business operational capabilities following a major security incident or disaster (e.g., DR site failover, backup restores).
 
-### Cyber Threat Intelligence (CTI)
-* **Strategic Intelligence:** High-level information regarding business risks, adversary trends, and financial motives (targeted at C-suite Executives).
-* **Tactical Intelligence:** Information on adversary Tactics, Techniques, and Procedures (TTPs) (targeted at Security Operations Centers).
-* **Operational Intelligence:** Specific details regarding incoming attacks, campaigns, or threat actor profiles (targeted at Security Analysts).
-* **Technical Intelligence:** Indicators of Compromise (IoCs) like IP addresses, malicious URLs, file hashes, and domain names (targeted at Automated Security Systems).
+### Risk Assessment & Cost-Benefit Formulas
+* **Single Loss Expectancy (SLE):** Financial loss incurred each time a specific risk event occurs.
+  $$\text{SLE} = \text{Asset Value (AV)} \times \text{Exposure Factor (EF)}$$
+* **Annualized Loss Expectancy (ALE):** Projected financial loss for a specific risk over a one-year period.
+  $$\text{ALE} = \text{SLE} \times \text{Annualized Rate of Occurrence (ARO)}$$
+* **Cost-Benefit Analysis (CBA):** Determines if a safeguard is financially justified.
+  $$\text{Safeguard Value} = \text{ALE}_{\text{prior}} - (\text{ALE}_{\text{post}} + \text{Annual Cost of Control})$$
+  * *Decision Rule:* If $\Delta\text{ALE} > \text{Annual Control Cost}$, deploy safeguard; otherwise, select **Risk Acceptance**.
 
----
+### Threat Modeling Frameworks
+* **STRIDE (Microsoft):** Threat-centric categorizations mapped to security principles:
+  * **S**poofing Identity $\rightarrow$ Impacts *Authenticity*.
+  * **T**ampering with Data $\rightarrow$ Impacts *Integrity*.
+  * **R**epudiation $\rightarrow$ Impacts *Non-Repudiation*.
+  * **I**nformation Disclosure $\rightarrow$ Impacts *Confidentiality*.
+  * **D**enial of Service $\rightarrow$ Impacts *Availability*.
+  * **E**levation of Privilege $\rightarrow$ Impacts *Authorization*.
+* **PASTA:** Risk-centric 7-stage methodology directly aligning technical vulnerabilities with operational business objectives.
+* **DREAD:** Vulnerability prioritization scoring system based on average rating across: **D**amage, **R**eproducibility, **E**xploitability, **A**ffected Users, **D**iscoverability.
 
-## 1.3 Threat Actor Classifications
-
-### Actor Types & Characteristics
-* **Black Hat:** Driven by financial gain, espionage, or malice; high technical skills; operates illegally without authorization.
-* **White Hat:** Security professionals acting defensively to secure systems; high technical skills; operates with full authorization.
-* **Gray Hat:** Driven by curiosity or unauthorized security evaluation; moderate to high skills; acts without explicit authorization but lacks malicious intent.
-* **Script Kiddies:** Driven by thrill-seeking or personal notoriety; low technical skills; relies on pre-built scripts and tools.
-* **Hacktivists:** Driven by political, social, or ideological causes; moderate technical skills; uses defacement, DDoS, and leaks.
-* **State-Sponsored / APT:** Driven by nation-state espionage, military operations, or strategic advantage; very high technical skills; backed by government resources.
-* **Insider Threat:** Driven by revenge, financial gain, or carelessness; varying technical skills; possesses legitimate internal access.
-
----
-
-## 1.4 Attack Models & Frameworks
-
-### Cyber Kill Chain (Lockheed Martin)
-1. **Reconnaissance:** Gathering intelligence on the target (emails, open ports, IP ranges).
-2. **Weaponization:** Coupling an exploit payload with a deliverable file (e.g., PDF/Docx with executable payload).
-3. **Delivery:** Transmitting the weaponized payload to the victim (e.g., via Phishing email, malicious link).
-4. **Exploitation:** Executing code on the victim system by exploiting software or human vulnerabilities.
-5. **Installation:** Establishing persistent access on the target (installing Backdoors, Trojans, Web Shells).
-6. **Command and Control (C2):** Establishing a covert communication channel back to the attacker's server.
-7. **Actions on Objectives:** Executing the final attack objective (Data Exfiltration, Encryption, Sabotage).
-
-### MITRE ATT&CK Framework
-* **Tactics:** The high-level operational goal of the adversary during an attack phase (the *Why*).
-  * *Examples:* Initial Access, Execution, Persistence, Privilege Escalation, Defense Evasion, Credential Access, Discovery, Lateral Movement, Collection, Exfiltration, Impact.
-* **Techniques:** The specific method or action used to achieve a tactical goal (the *How*).
-  * *Example:* T1059 (Command and Scripting Interpreter).
-* **Sub-Techniques:** Detailed categorization of a specific technique mechanism.
-  * *Example:* T1059.001 (PowerShell).
+### Threat Intelligence & Framework Mechanics
+* **STIX & TAXII:** STIX (Structured Threat Information eXpression) defines the JSON schema language (**WHAT** threat data is). TAXII (Trusted Automated eXchange of Indicator Information) is the HTTPS transport protocol (**HOW** threat data is delivered).
+* **Cyber Kill Chain (Lockheed Martin):** Reconnaissance $\rightarrow$ Weaponization $\rightarrow$ Delivery $\rightarrow$ Exploitation $\rightarrow$ Installation $\rightarrow$ C2 $\rightarrow$ Actions on Objectives.
+  * *Critical Exam Distinctions:* **Weaponization** occurs purely on *Attacker infrastructure*. **Exploitation** occurs on the *Victim host*.
+* **MITRE ATT&CK Framework:** Structured matrix organizing real-world threat actor behaviors:
+  * **Tactics:** High-level adversary objectives (*Why* an action is taken).
+  * **Techniques:** Specific methods to achieve tactical goals (*How* it is executed).
+  * **Sub-Techniques / Procedures:** Specific software commands or execution scripts used in real-world campaigns.
 
 ---
 
-## 1.5 Ethical Hacking & Penetration Testing Methodologies
+## Tier 3: Command-Line Syntax & Tool Execution
 
-### Types of Security Assessments
-* **Vulnerability Assessment:** Identifies, quantifies, and prioritizes vulnerabilities without actively exploiting them.
-* **Penetration Testing:** Active execution of attack vectors to exploit vulnerabilities and measure actual system resilience.
-
-### Penetration Testing Approaches
-* **Black-Box Testing:** No prior knowledge of internal target infrastructure (simulates external threat actor).
-* **White-Box Testing:** Complete internal knowledge provided, including source code, network diagrams, and IP mappings (simulates internal developer/admin audit).
-* **Gray-Box Testing:** Partial knowledge provided (e.g., standard low-privileged user account, internal IP subnets).
-
-### Phases of Penetration Testing
-1. **Pre-engagement & Scoping:** Defining Rules of Engagement (RoE), scope parameters, legal authorizations, testing windows, and emergency points of contact.
-2. **Information Gathering / Reconnaissance:** Passive and active OSINT data gathering.
-3. **Vulnerability Analysis:** Scanning target assets for unpatched flaws or misconfigurations.
-4. **Exploitation:** Executing authorized attacks to gain access.
-5. **Post-Exploitation:** Maintaining access, escalating privileges, lateral movement, and assessing impact.
-6. **Reporting & Remediation:** Documenting findings, PoCs, risk ratings (CVSS), and actionable remediation steps.
+* **Checking Rules of Engagement / Scope Metrics:**
+  * Active penetration testing probes transmitted without signed legal authorization explicitly violate statutes like the CFAA (18 U.S.C. § 1030).
+* **STIX Payload Processing Syntax Structure:**
+  * Interacting with threat feeds over TAXII endpoints:
+  ```bash
+  # Querying a TAXII server discovery endpoint via cURL
+  curl -X GET [https://cti-server.example.com/taxii2/](https://cti-server.example.com/taxii2/) -H "Accept: application/taxii+json;version=2.1"
+  ```
+* **Calculating Quantitative Metrics in Scripts:**
+  ```bash
+  # Quick bash calculation for ALE
+  python3 -c "AV=100000; EF=0.3; ARO=0.5; SLE=AV*EF; ALE=SLE*ARO; print(f'SLE: {SLE}, ALE: {ALE}')"
+  ```
 
 ---
 
-## 1.6 Information Security Laws, Regulations & Compliance Standards
+## Tier 4: Real-World Scenario Blueprints
 
-### Major Security & Privacy Legislation
-* **Computer Fraud and Abuse Act (CFAA) (US):** Primary federal statute prohibiting unauthorized access to computers and protected systems.
-* **Electronic Communications Privacy Act (ECPA) (US):** Restricts unauthorized interception of electronic wire and oral communications.
-* **General Data Protection Regulation (GDPR) (EU):** Standard regulating data privacy, consumer consent, and protection of Personally Identifiable Information (PII) for EU citizens.
-* **Health Insurance Portability and Accountability Act (HIPAA) (US):** Mandates data security standards for Protected Health Information (PHI) in healthcare systems.
-* **Sarbanes-Oxley Act (SOX) (US):** Mandates strict financial recordkeeping and internal controls auditing for public companies to prevent fraud.
+### Scenario 1: Medical Device Network Isolation
+* **Context:** A hospital operates legacy embedded operational technology (OT) hosting unpatchable vulnerabilities that cannot be updated without voiding regulatory compliance.
+* **Analysis:** Primary preventive controls (patching) are unviable. The team deploys strict VLAN microsegmentation and deep packet inspection (DPI) firewalls to monitor traffic.
+* **Execution/Verdict:** This is a classic implementation of a **Compensating Control**.
 
-### Industry Compliance Standards
-* **PCI-DSS (Payment Card Industry Data Security Standard):** Requirements governing organizations processing, storing, or transmitting credit card and payment data.
-* **ISO/IEC 27001:** Global standard defining requirements for establishing, implementing, maintaining, and continually improving an Information Security Management System (ISMS).
-* **NIST SP 800-53:** Comprehensive catalog of security controls for federal information systems and organizations.
+### Scenario 2: Cloud Hypervisor Context Breakout
+* **Context:** A security analyst discovers a flaw in a shared public cloud instance where an attacker can break out of a restricted guest container/VM to execute arbitrary code on the hypervisor host.
+* **Analysis:** Under CVSS v3.1 rating metrics, the vulnerability impacts components beyond its immediate security authorization scope.
+* **Execution/Verdict:** The CVSS metric for **Scope (S)** shifts from **Unchanged (U)** to **Changed (C)**, significantly increasing the overall severity score.
+
+### Scenario 3: Legal Liability During Third-Party Assessments
+* **Context:** A penetration tester identifies an active remote code execution vulnerability on a client's core production database during an off-hours assessment window.
+* **Analysis:** The tester must act in full compliance with the agreed **Rules of Engagement (RoE)** and **Scope of Work (SoW)** without exceeding authorized boundaries.
+* **Execution/Verdict:** The tester must immediately halt active exploitation on that host, document findings, and notify designated client emergency contacts specified in the RoE before proceeding.
+
+---
+
+## Tier 5: Exam Key Hooks & Rapid Triggers
+
+| Concept / Mechanism | High-Yield Key Hook / Exam Trigger | Critical Distinction / Technical Trap |
+| :--- | :--- | :--- |
+| **Confidentiality** | Protection against unauthorized disclosure | Enforced via AES, RSA, ACLs, MAC, MFA |
+| **Integrity** | Protection against unauthorized data modification | Enforced via SHA-256, HMAC, Digital Signatures, FIM |
+| **Availability** | Continuous, timely operational access | Enforced via HA clusters, RAID, Load Balancers, Backups |
+| **Authenticity** | Verification of origin identity and legitimacy | Enforced via PKI certificates, FIDO2/WebAuthn |
+| **Non-Repudiation** | Proof of origin; sender cannot deny sending | Private key signature + immutable centralized logging |
+| **Preventive Control** | Proactively stops an attack before execution | Firewalls, IPS, ACLs, MFA |
+| **Detective Control** | Identifies and alerts on active security incidents | IDS, SIEM correlation rules, EDR |
+| **Corrective Control** | Repairs damage and restores normal state | Re-imaging hosts, automated isolation, applying patches |
+| **Deterrent Control** | Discourages attackers from attempting attacks | Legal warning banners, visible CCTV cameras |
+| **Compensating Control**| Alternative safeguard when primary is unfeasible | Dedicated isolated VLAN + DPI for legacy systems |
+| **Recovery Control** | Restores operational capacity post-disaster | DRP execution, DR site failover, backup restoration |
+| **Single Loss Expectancy**| Financial loss per single threat event | $\text{SLE} = \text{Asset Value (AV)} \times \text{Exposure Factor (EF)}$ |
+| **Annualized Rate** | Estimated yearly frequency of a threat | $\text{ARO} = 12.0$ (monthly), $\text{ARO} = 0.1$ (once every 10 yrs) |
+| **Annualized Loss** | Total expected annual loss for a specific risk | $\text{ALE} = \text{SLE} \times \text{ARO}$ |
+| **Cost-Benefit Analysis**| Validates financial viability of a control | Implement safeguard only if $\Delta\text{ALE} > \text{Annual Safeguard Cost}$ |
+| **Risk Avoidance** | Completely eliminating risk by stopping activity | Discontinuing a legacy service or vulnerable application |
+| **Risk Mitigation** | Implementing safeguards to lower risk level | Installing firewalls, deploying EDR, patching software |
+| **Risk Transfer** | Offloading financial risk to a third party | Purchasing Cyber Insurance, using managed service provider |
+| **Risk Acceptance** | Absorbing financial impact without controls | Chosen when safeguard cost exceeds potential risk loss |
+| **STRIDE - Spoofing** | Impersonating legitimate user/system | Violates **Authenticity** |
+| **STRIDE - Tampering** | Modifying data or execution parameters | Violates **Integrity** |
+| **STRIDE - Repudiation**| Denying performed actions due to weak logs | Violates **Non-Repudiation** |
+| **STRIDE - Info Disclosure**| Exposing sensitive data to unauthorized entities| Violates **Confidentiality** |
+| **STRIDE - DoS** | Disrupting or halting service availability | Violates **Availability** |
+| **STRIDE - Elevation** | Gaining unauthorized administrative privileges | Violates **Authorization** |
+| **PASTA** | Risk-centric 7-stage threat modeling | Directly aligns technical threats with business objectives |
+| **DREAD** | Risk prioritization scoring metric | Calculated by averaging **D**, **R**, **E**, **A**, **D** factors |
+| **Script Kiddie** | Unskilled attacker using pre-built tools | Lacks custom exploit development ability |
+| **Hacktivist** | Driven by political, social, or religious goals | Uses defacements, leaks, and DDoS attacks |
+| **APT / State-Sponsored**| Skilled, highly funded nation-state threat | Long-term cyber espionage and strategic persistence |
+| **Insider Threat** | Current/former employee misusing access | Dangerous due to existing internal trust and rights |
+| **Strategic CTI** | Executive-level strategic threat insight | Focuses on business risk, overall trends, and finances |
+| **Operational CTI** | SOC leadership and incident management | Focuses on incoming campaigns, motives, and attacker intent |
+| **Tactical CTI** | Targeted at SOC analysts and threat hunters | Maps threat actor TTPs directly to MITRE ATT&CK |
+| **Technical CTI** | Feeds for automated security appliances | Consists of IoCs (IPs, URLs, file hashes, domain names) |
+| **STIX** | JSON-based data format for threat data | Defines **WHAT** threat data looks like (Schema) |
+| **TAXII** | Protocol transporting STIX payloads over HTTPS | Defines **HOW** threat data is delivered |
+| **Cyber Kill Chain** | Lockheed Martin 7-stage attack framework | Recon $\rightarrow$ Weaponization $\rightarrow$ Delivery $\rightarrow$ Exploitation $\rightarrow$ Installation $\rightarrow$ C2 $\rightarrow$ Actions |
+| **Kill Chain: Weaponization**| Packaging exploit code into deliverable payload| **MUST** occur on attacker infrastructure, NOT victim |
+| **Kill Chain: Exploitation**| Triggering exploit code against victim vulnerability| Occurs directly on target host environment |
+| **MITRE ATT&CK** | Matrix organizing real-world adversary behavior | Tactics (**Why**), Techniques (**How**), Sub-techniques, Procedures |
+| **Vulnerability Assessment**| Scans and categorizes system weaknesses | **NO EXPLOITATION** permitted; identifies surface flaws |
+| **Penetration Testing** | Active verification of real-world risk level | **ACTIVELY EXPLOITS** weaknesses to validate impact |
+| **Black-Box Testing** | Zero prior target architecture knowledge | Simulates external attacker; high reliance on OSINT |
+| **White-Box Testing** | Full documentation, code, and network maps | Simulates internal developer or comprehensive security audit |
+| **Gray-Box Testing** | Limited user credentials or internal ranges | Simulates standard insider threat or compromised account |
+| **Rules of Engagement** | Explicit boundaries, allowed exploits, limits | **MUST** be signed by corporate C-level/Legal before scanning |
+| **CFAA** | Primary U.S. federal anti-hacking statute | Prosecutes unauthorized computer access and damage |
+| **GDPR** | EU personal data privacy regulatory standard | Mandates data breach notifications within **72 hours** |
+| **PCI-DSS** | Compliance for handling payment card data | Requires quarterly ASV scans and annual security audits |
+---
+
+## 1.6 High-Yield CEH Exam Traps & Distinction Matrix
+
+| Concept Pair | Critical Distinction for CEH Scenarios |
+| :--- | :--- |
+| **Vulnerability Assessment vs. Penetration Test** | Vulnerability Assessment identifies/categorizes flaws (**NO** exploitation allowed). Penetration Test actively **EXPLOITS** flaws to prove real-world vulnerability. |
+| **Risk Mitigation vs. Risk Transfer** | Risk Mitigation deploys controls to reduce likelihood/impact. Risk Transfer offloads financial risk to a 3rd party (e.g., Cyber Insurance). |
+| **STIX vs. TAXII** | STIX is the language/format defining threat data (JSON Schema). TAXII is the protocol/transport executing delivery over HTTPS. |
+| **Weaponization vs. Exploitation (Kill Chain)** | Weaponization occurs entirely on **Attacker** infrastructure. Exploitation is executed on the **Victim** host upon payload execution. |
+
+* **Rule of Engagement Authorization Trap:** Executing penetration testing probes without explicit, signed legal authorization from an authorized corporate officer is defined as unauthorized access under legal statutes like CFAA, regardless of tester intent.
+* **Quantitative Risk Decisions:** Compute:
+  $$\Delta\text{ALE} = \text{ALE}_{\text{prior}} - \text{ALE}_{\text{post}}$$
+  If $\Delta\text{ALE} > \text{Annual Safeguard Cost}$, implement the control. If $\Delta\text{ALE} < \text{Annual Safeguard Cost}$, select **Risk Acceptance**.
+* **Scope (S) Changes in CVSS v3.1:** If a vulnerability allows an attacker to break out of a restricted context to impact surrounding components (e.g., guest VM escape to host hypervisor), the Scope metric changes from **Unchanged (U)** to **Changed (C)**.
