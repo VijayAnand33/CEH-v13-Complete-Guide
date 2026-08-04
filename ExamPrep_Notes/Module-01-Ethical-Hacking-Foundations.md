@@ -107,3 +107,5 @@
 | **Rules of Engagement** | Formal legal limits and boundaries | Must be signed by executive leadership before testing |
 | **GDPR Breach Warning**| Mandatory breach notification timeframe | **72 hours** |
 | **PCI-DSS Scanning** | Mandatory scanning interval for card processors | **Quarterly** (every 3 months) by ASV |
+
+---
