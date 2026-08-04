@@ -1,75 +1,119 @@
 # Module 02: Footprinting and Reconnaissance
 
-## 2.1 Footprinting Concepts
+## Tier 1: Core Concepts & Principles
 
 ### Principles of Footprinting
-* **Footprinting Definition:** The systematic first step of ethical hacking where an attacker or tester gathers comprehensive information about a target organization, network, or system.
-* **Objectives:**
-  * Discover network architecture, open ranges, domain names, and administrative contacts.
-  * Identify specific vulnerabilities, misconfigurations, and entry points for active exploitation.
-  * Construct a clear threat landscape without triggering security alerts during passive phases.
-* **Passive vs. Active Footprinting:**
-  * **Passive Footprinting:** Gathering target intelligence without direct interaction with the target systems (e.g., searching OSINT, public records, social media, WHOIS databases).
-  * **Active Footprinting:** Direct communication with target systems to harvest technical operational details (e.g., executing network traceroutes, DNS queries, web crawling).
+* **Footprinting Definition:** The systematic baseline step of ethical hacking where an attacker or penetration tester gathers detailed technical, operational, and organizational information about a target network before launching an attack.
+* **Primary Objectives:**
+  * Map network architecture, active host subnets, domain hierarchies, and administrative ownership.
+  * Uncover vulnerable services, misconfigurations, and entry vectors to construct an explicit threat model.
+  * Formulate an accurate target footprint without alerting network defenders during passive stages.
+* **Passive vs. Active Footprinting Matrix:**
+
+| Dimension | Passive Footprinting | Active Footprinting |
+| :--- | :--- | :--- |
+| **Direct Target Contact** | None (Interacts with third parties / public caches) | Direct (Sends packets directly to target endpoints) |
+| **Detection Probability** | Extremely Low / Invisible to target IDS | High (Logged by target Firewalls, WAFs, and SIEM) |
+| **CEH Exam Examples** | OSINT searches, WHOIS lookups, SHODAN, Social Media | DNS Zone Transfers, Nmap ping sweeps, Web Crawling |
+| **Legal / Policy Impact** | Purely public information gathering | May breach strict rules of engagement if unauthorized |
 
 ---
 
-## 2.2 Footprinting Methodology
+## Tier 2: Technical Analysis & Reconnaissance Methodology
 
-### Search Engine Reconnaissance
-* **Advanced Google Search Operators (Google Dorks):**
-  * `site:` Restricts results to a specific domain or host (e.g., `site:target.com`).
-  * `filetype:` Limits results to specific document formats (e.g., `filetype:pdf`, `filetype:xls`).
-  * `inurl:` Filters for URLs containing specific strings (e.g., `inurl:admin`, `inurl:login`).
-  * `intitle:` Restricts search to pages containing specific keywords in the HTML title tag.
-* **Google Hacking Database (GHDB):** A public collection of search queries designed to uncover exposed credentials, vulnerable scripts, server advisories, and administrative interface pages.
+### Search Engine Reconnaissance & Google Dorking
+* **Google Hacking Database (GHDB):** A public collection of search queries designed to expose sensitive files, exposed admin portals, database credentials, and vulnerable scripts indexed by web crawlers.
+* **CEH High-Yield Google Dorks Reference:**
+
+| Operator / Dork | Exam Function & Syntax | Practical Exam Target / Scenario |
+| :--- | :--- | :--- |
+| `site:` | Restricts results to a single domain (e.g., `site:target.com`) | Isolate corporate digital assets |
+| `filetype:` | Filters by specific file extensions (e.g., `filetype:pdf` or `xls`) | Discover sensitive internal documentation |
+| `inurl:` | Scans for strings in the page URL (e.g., `inurl:admin`) | Identify administrative portals and login endpoints |
+| `intitle:` | Scans for text within the HTML `<title>` tag | Uncover directory listings (`intitle:"index of"`) |
+| `intext:` | Scans body text of web pages (e.g., `intext:"sql syntax near"`) | Locate exposed error logs or credentials |
+| `link:` | Finds web pages linking to a specific URL | Perform reverse link dependency mapping |
+| `cache:` | Displays Google's stored snapshot of a webpage | View content deleted or hidden by the server |
 
 ### Web & Domain Reconnaissance
-* **Website Intelligence Gathering:**
-  * **Netcraft:** Used for discovering target web server technologies, operating system signatures, hosting histories, and associated subdomains.
-  * **Web Spiders & Crawlers:** Automated tools (e.g., Photon, HTTrack) used to recursively parse site structure, hidden directories, forms, and JavaScript parameters.
-* **WHOIS & Domain Registries:**
-  * Identifies domain registration details including owner contacts, domain registrar, creation/expiry dates, and authoritative name servers.
-* **DNS Footprinting & Record Enumeration:**
-  * **A Record:** Maps a hostname to an IPv4 address.
-  * **AAAA Record:** Maps a hostname to an IPv6 address.
-  * **MX Record:** Specifies mail servers responsible for receiving domain email.
-  * **NS Record:** Identifies authoritative name servers managing the domain's DNS zones.
-  * **CNAME Record:** Specifies alias names pointing to canonical hostnames.
-  * **TXT Record:** Holds text data, often utilized for SPF (Sender Policy Framework), DKIM, and domain verification.
-  * **DNS Zone Transfer:** Attempting to retrieve a complete DNS zone database from misconfigured authoritative name servers using tools like `dig` or `nslookup` (e.g., `dig axfr @ns1.target.com target.com`).
+* **Website Intelligence Tools:**
+  * **Netcraft:** Discovers web server operating systems, web frameworks, hosting histories, SSL/TLS certificates, and infrastructure shifts.
+  * **Web Spiders & Crawlers (Photon, HTTrack, Burp Spider):** Recursively parse target web trees to enumerate hidden endpoints, client-side JavaScript comments, and sensitive forms.
+* **WHOIS Lookups:** Queries Regional Internet Registries (RIRs like ARIN, RIPE, APNIC) to retrieve domain ownership, administrative contacts, registration dates, and authoritative name server addresses.
+* **DNS Record Types & Reference Table:**
+
+| Record Type | Description & Purpose | Exam Hook / Significance |
+| :--- | :--- | :--- |
+| **A** | Maps Hostname to IPv4 Address | Direct host address resolution |
+| **AAAA** | Maps Hostname to IPv6 Address | Identifies dual-stack / IPv6 infrastructure |
+| **MX** | Mail Exchange Record | Points to incoming mail server gateways |
+| **NS** | Name Server Record | Identifies authoritative DNS servers for a domain |
+| **CNAME** | Canonical Name (Alias) | Links subdomains to external services (SaaS targets) |
+| **TXT** | Text Metadata (SPF, DKIM, DMARC) | Essential for email authentication and domain ownership |
+| **SOA** | Start of Authority | Identifies master DNS server, serial number, and zone timers |
+| **PTR** | Pointer Record (Reverse DNS) | Resolves IP address to Hostname (Inverse lookup) |
+| **SRV** | Service Location Record | Defines port and protocol for specific services (e.g., Active Directory) |
 
 ### Network & Infrastructure Reconnaissance
-* **Network Path & Route Analysis:**
-  * **Traceroute (Unix/Linux) / Tracert (Windows):** Identifies the network hop-by-hop path taken by packets toward a destination host by analyzing ICMP/UDP Time-To-Live (TTL) expiration responses.
-  * Uncovers topology, firewall locations, perimeter routers, and internal subnet boundaries.
-* **IP Address Geolocation:** Mapping target public IP subnets to geographic coordinates, ISP backbones, and host facilities.
-
-### Social Engineering & Person Reconnaissance
-* **People Search Engines & OSINT:** Utilizing platforms like Pipl, Spokeo, and social networks (LinkedIn, Twitter) to gather employee directories, corporate structures, email formats, and tech stacks mentioned in job postings.
-* **Username & Account Enumeration:** Running tools like Sherlock to search hundreds of social networks and web platforms for specific target handles and profiles.
+* **Network Path & Traceroute Analysis:**
+  * **Linux `traceroute`:** Sends UDP (or ICMP) packets with incrementally increasing Time-To-Live (TTL) values starting at 1.
+  * **Windows `tracert`:** Uses ICMP Echo Request packets by default.
+  * **Mechanism:** When a router receives a packet with `TTL = 1`, it drops the packet and responds with an `ICMP Time Exceeded` message (Type 11, Code 0), revealing its IP address.
+  * **CEH Firewalk Hook:** Firewalk uses TTL calculations to determine firewall port-filtering rules by analyzing responses from hosts behind a gateway.
 
 ---
 
-## 2.3 Footprinting Tools & Frameworks
+## Tier 3: CLI, OSINT Tools & Frameworks
 
-### OSINT & Reconnaissance Frameworks
-* **Recon-ng:** A modular, web-based open-source intelligence framework written in Python used to perform automated domain, contact, host, and vulnerability gathering via various API integrations.
-* **ShellGPT / AI-Driven Automation:** Utilizing local or automated scripting interfaces (e.g., ShellGPT) to automate command execution for email harvesting, subdomain discovering, and target report generation.
-* **Email Tracking Tools:**
-  * **eMailTrackerPro:** Analyzes email headers to determine origin IP addresses, intermediate proxy relays, and geolocation information of the sender.
+### Comprehensive OSINT Framework Mapping
+
+| Tool / Framework | Primary Capability | Key Technical Feature / Command Line Usage |
+| :--- | :--- | :--- |
+| **Recon-ng** | Automated Python OSINT framework | Modular interface (`modules load`, `db insert`, `run`) using API integrations |
+| **theHarvester** | OSINT Email & Subdomain Harvester | Combines search engines, SHODAN, and PGP keys (`theharvester -d target.com -b all`) |
+| **Shodan** | Search Engine for Internet-Connected Devices | Filters by service, open ports, and banners (`net:192.168.1.0/24 org:"Target"`) |
+| **Maltego** | Graphical Link Analysis & Intelligence | Visual node graphs mapping relationships between IPs, domains, and individuals |
+| **Sherlock** | Social Media Handle Enumeration | Queries hundreds of web services for specific usernames (`sherlock targetuser`) |
+| **OSFW (OSRFramework)** | Deep Web & User Account Profiling | Set of Python libraries for username checks and domain profiling (`us3rsearch`) |
+| **Censys** | Infrastructure & Certificate Search | Analyzes SSL/TLS certificate transparency logs to find hidden subdomains |
+
+### DNS Zone Transfer Execution Commands
+* **Concept:** Misconfigured DNS servers allow unauthorized requests for entire zone databases (`AXFR`), revealing all internal subdomains and IP mappings.
+* **CLI Execution:**
+  * `dig axfr @ns1.target.com target.com`
+  * `nslookup` -> `set type=any` -> `ls -d target.com`
 
 ---
 
-## 2.4 Footprinting Countermeasures
+## Tier 4: Real-World Scenarios & Countermeasures
 
-### Security Defenses & Prevention
-* **DNS Protection:**
-  * Disable unauthorized DNS zone transfers (`AXFR`) to external or unauthenticated IP addresses.
-  * Use split-horizon DNS architecture to separate internal domain infrastructure from external public-facing DNS.
-* **OSINT & Public Exposure Mitigation:**
-  * Enforce WHOIS privacy services or substitute corporate information instead of employee PII in registration fields.
-  * Audit corporate websites and public code repositories (e.g., GitHub) to prevent leaks of API keys, configuration credentials, or detailed internal infrastructure diagrams.
-* **Technical Controls:**
-  * Restrict administrative interfaces from being indexed by search engines via appropriate directives (e.g., `robots.txt`, `X-Robots-Tag`).
-  * Implement strict email authentication frameworks (SPF, DKIM, DMARC) to prevent email spoofing and domain misuse.
+### Defensive Mitigations & Best Practices
+* **DNS Hardening:**
+  * Restrict DNS Zone Transfers (`AXFR`) strictly to named secondary DNS servers via IP access control lists (ACLs) or TSIG (Transaction Signature) keys.
+  * Implement **Split-Horizon DNS** (Split-Brain DNS) to isolate internal network record resolution from public-facing DNS.
+* **Public Information & Data Leakage Control:**
+  * Enforce **WHOIS Privacy Services** or substitute official corporate support details in registration records instead of specific employee PII.
+  * Continually audit public code repositories (GitHub, GitLab) for inadvertently exposed hardcoded API keys, certificates, or database credentials using tools like TruffleHog or GitLeaks.
+* **Administrative & Email Controls:**
+  * Deploy `robots.txt` and `X-Robots-Tag` directives carefully (Note: `robots.txt` prevents public search engine indexing, but can be read by attackers to locate sensitive directories).
+  * Configure strict email security controls including **SPF (Sender Policy Framework)**, **DKIM (DomainKeys Identified Mail)**, and **DMARC (Domain-based Message Authentication, Reporting, and Conformance)**.
+
+---
+
+## Tier 5: Exam Triggers & Master Summary Table
+
+| Exam Scenario / Keyword | Target / Mechanism | CEH High-Yield Answer / Tool |
+| :--- | :--- | :--- |
+| **Silent Reconnaissance** | Gathering info without touching target systems | **Passive Footprinting** (Shodan, WHOIS, Social Media) |
+| **Direct Host Interaction** | Sending packets directly to target IPs | **Active Footprinting** (Nmap ping sweep, DNS AXFR) |
+| **Find Administrative Login Portals** | Search query for specific URL strings | `inurl:admin` / `inurl:login` |
+| **Uncover Hidden PDFs/XLS Files** | Search query restricting file formats | `filetype:pdf` or `filetype:xls` |
+| **Extract Full Internal Subdomains** | Querying misconfigured DNS server | **DNS Zone Transfer** (`dig axfr @ns1.target.com target.com`) |
+| **Map Reverse IP to Hostname** | Resolving IP address back to domain | **PTR Record** (Pointer Record) |
+| **Verify Email Authentication Policies** | Text metadata record for domain validation | **TXT Record** (SPF / DKIM / DMARC) |
+| **Trace Network Hops & TTL** | Packet path mapping via TTL expiry | `traceroute` (Linux / UDP) / `tracert` (Windows / ICMP) |
+| **Gather OSINT via API Integrations** | Python-based modular CLI framework | **Recon-ng** |
+| **Harvest Emails & Domains via CLI** | Public engine scraping tool | `theharvester -d target.com -b all` |
+| **Find Connected IoT/Server Banners** | Public search engine for active hardware | **Shodan** / **Censys** |
+| **Isolate Public vs. Internal DNS** | DNS architecture protection | **Split-Horizon DNS** |
+| **Prevent External DNS Dumps** | DNS administrative protection | **Disable AXFR Transfers** / Restrict via ACLs |
