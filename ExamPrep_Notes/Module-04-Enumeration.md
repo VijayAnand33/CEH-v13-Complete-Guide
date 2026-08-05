@@ -154,3 +154,87 @@ NetBIOS names consist of 16 characters (15 ASCII characters + 1 hex byte suffix 
 | **`rpcclient` (`queryuser`)** | Queries specific Relative Identifier (RID) | `queryuser 0x1f4` targets default Administrator account |
 | **`showmount -e <IP>`** | Queries NFS daemon exports | Displays list of exported directories and allowed client IPs |
 | **DNS Zone Transfer (AXFR)** | Replicates full DNS database over TCP Port 53 | Exposes all subdomains, hostnames, and IP mappings via `dig AXFR` |
+
+---
+
+## Common Enumeration Services & Ports
+
+| Port | Protocol | Service | Full Form | Primary Purpose | CEH Enumeration Focus |
+|------:|:--------:|---------|-----------|-----------------|-----------------------|
+| **53** | TCP | DNS | **Domain Name System** | Resolves domain names to IP addresses. TCP is primarily used for DNS Zone Transfers (AXFR). | DNS Enumeration, Zone Transfer |
+| **111** | TCP/UDP | RPC / Portmapper | **Remote Procedure Call / Portmapper (rpcbind)** | Maps RPC services to dynamically assigned ports on Linux/Unix systems. | NFS Enumeration, RPC Enumeration |
+| **135** | TCP | RPC | **Remote Procedure Call** | Enables communication between Windows services and applications. | Windows RPC Enumeration |
+| **137** | UDP | NBNS | **NetBIOS Name Service** | Resolves NetBIOS computer names to IP addresses within a local network. | NetBIOS Enumeration, LLMNR/NBT-NS Poisoning |
+| **139** | TCP | NetBIOS Session Service | **NetBIOS Session Service** | Legacy Windows file and printer sharing over NetBIOS. | SMB Enumeration (Legacy) |
+| **161** | UDP | SNMP | **Simple Network Management Protocol** | Retrieves management information from network devices such as routers, switches, and servers. | SNMP Enumeration |
+| **162** | UDP | SNMP Trap | **Simple Network Management Protocol Trap** | Sends alerts and event notifications from managed devices to the SNMP manager. | Identify monitoring infrastructure |
+| **389** | TCP/UDP | LDAP | **Lightweight Directory Access Protocol** | Provides access to directory services such as Microsoft Active Directory. | LDAP Enumeration |
+| **445** | TCP | SMB | **Server Message Block** | Native Windows file, printer, and resource sharing without NetBIOS. | SMB Enumeration, Pass-the-Hash, EternalBlue |
+| **465** | TCP | SMTPS | **Simple Mail Transfer Protocol Secure** | Secure email transfer using SSL/TLS (legacy). | SMTP Enumeration |
+| **587** | TCP | SMTP Submission | **Simple Mail Transfer Protocol** | Authenticated email submission from mail clients to mail servers. | SMTP Enumeration |
+| **636** | TCP | LDAPS | **Lightweight Directory Access Protocol Secure** | Encrypted LDAP communication using SSL/TLS. | Secure LDAP Enumeration |
+| **2049** | TCP/UDP | NFS | **Network File System** | Allows Linux/Unix systems to share files and directories across a network. | NFS Enumeration |
+| **3268** | TCP | Global Catalog | **Active Directory Global Catalog** | Searches directory objects across the entire Active Directory forest. | Active Directory Enumeration |
+| **3269** | TCP | Global Catalog SSL | **Secure Active Directory Global Catalog** | Encrypted Global Catalog service over SSL/TLS. | Secure Active Directory Enumeration |
+
+---
+
+## Service Abbreviations
+
+| Abbreviation | Full Form |
+|--------------|-----------|
+| **DNS** | Domain Name System |
+| **RPC** | Remote Procedure Call |
+| **NBNS** | NetBIOS Name Service |
+| **SMB** | Server Message Block |
+| **SNMP** | Simple Network Management Protocol |
+| **LDAP** | Lightweight Directory Access Protocol |
+| **LDAPS** | Lightweight Directory Access Protocol Secure |
+| **NFS** | Network File System |
+| **SMTP** | Simple Mail Transfer Protocol |
+| **SMTPS** | Simple Mail Transfer Protocol Secure |
+| **AD** | Active Directory |
+| **GC** | Global Catalog |
+| **AXFR** | Authoritative Zone Transfer |
+| **LLMNR** | Link-Local Multicast Name Resolution |
+| **NBT-NS** | NetBIOS Name Service |
+| **RDP** | Remote Desktop Protocol |
+| **TGS** | Ticket Granting Service |
+| **TGT** | Ticket Granting Ticket |
+
+---
+
+## CEH Quick Memory Notes
+
+| Port | Remember This |
+|------|---------------|
+| **53/TCP** | DNS Zone Transfer (AXFR) |
+| **111** | Linux RPC / Portmapper |
+| **135** | Windows RPC |
+| **137** | NetBIOS Name Resolution |
+| **139** | Legacy SMB over NetBIOS |
+| **161** | SNMP Query (Manager → Device) |
+| **162** | SNMP Trap (Device → Manager) |
+| **389** | LDAP (Active Directory) |
+| **445** | Modern SMB |
+| **465** | Legacy Secure SMTP |
+| **587** | Modern Authenticated SMTP |
+| **636** | Secure LDAP (LDAPS) |
+| **2049** | NFS File Sharing |
+| **3268** | Active Directory Global Catalog |
+| **3269** | Secure Global Catalog |
+
+---
+
+## CEH Exam Tips
+
+- **53/TCP** → Attempt **DNS Zone Transfer (AXFR)**.
+- **111** → Enumerate **NFS** and RPC services.
+- **135** → Enumerate Windows RPC services.
+- **137** → Enumerate NetBIOS names and perform **NBT-NS/LLMNR poisoning**.
+- **139 / 445** → Enumerate SMB shares, users, groups, and OS information.
+- **161** → Dump device configuration using SNMP if community strings are weak.
+- **389 / 636** → Enumerate Active Directory users, groups, computers, and policies.
+- **2049** → Enumerate exported NFS shares.
+- **3268 / 3269** → Query objects across the entire Active Directory forest.
+- **25 / 465 / 587** → Perform SMTP user enumeration and mail server assessment.
