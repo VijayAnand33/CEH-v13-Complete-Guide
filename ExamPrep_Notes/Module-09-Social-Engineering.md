@@ -145,3 +145,5 @@ An open-source Python framework developed by Dave Kennedy (TrustedSec) for autom
 | **Mantraps / Air Lock Portals** | Two interlocking doors that physical lock to **prevent tailgating**. |
 | **Clean Desk Policy** | Mandates locking away physical paper, USBs, and notes when stepping away. |
 | **FIDO2 / Hardware Keys** | The ultimate MFA countermeasure to render **harvested credentials useless**. |
+
+---
