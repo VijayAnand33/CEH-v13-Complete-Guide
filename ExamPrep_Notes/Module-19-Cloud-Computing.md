@@ -26,6 +26,8 @@
   * Timing attacks and HTTP response status codes on login endpoints disclose whether specific user email accounts exist (`User Realm Discovery`).
   * Identifies identity configuration: **Managed** (cloud-only / password hash sync) vs. **Federated** (Active Directory Federation Services - ADFS).
 
+  An attacker can use publicly exposed Entra ID authentication/discovery infrastructure to identify an organization's tenant, domains, authentication configuration, and potentially information about user accounts—all without initially accessing the organization's internal network.
+
 #### 2. Amazon S3 Bucket Exploitation
 * **Mechanics:** S3 buckets use standard REST endpoint URL structures:
   $$\text{https://} \langle \text{bucket-name} \rangle \text{.s3.amazonaws.com} \quad \text{or} \quad \text{https://s3.amazonaws.com/} \langle \text{bucket-name} \rangle$$
@@ -34,17 +36,24 @@
   * **`AuthenticatedUsers` Group:** Grants access to *any* individual possessing a valid AWS account worldwide, failing to enforce organizational boundaries.
 * **Exploitation Impact:** Attackers perform bucket enumeration (`s3:ListBucket`), download sensitive objects via unauthenticated CLI requests (`--no-sign-request`), or execute arbitrary file uploads/overwrites (`s3:PutObject`).
 
+An attacker can exploit publicly accessible or misconfigured S3 buckets to enumerate stored objects, access sensitive data, or upload/overwrite files without proper authorization.
+
 #### 3. AWS IAM Privilege Escalation
 * **Mechanics:** Insecure IAM permission policies allow low-privileged users to attach policies or modify policy versions.
 * **Exploitation Pattern (`iam:AttachUserPolicy`):**
   $$\text{Vulnerable Permission: } \texttt{"Action": "iam:AttachUserPolicy", "Resource": "*"} \longrightarrow \text{Attach "AdministratorAccess" policy to self}$$
 * **Escalation Path:** An attacker with compromised low-privilege credentials executes `iam:AttachUserPolicy` to attach the AWS-managed policy `arn:aws:iam::aws:policy/AdministratorAccess` directly to their own IAM user identity, gaining full administrative control across the cloud infrastructure.
 
+An attacker with low-privileged AWS credentials can exploit overly permissive IAM policies to modify their own permissions, escalate to administrator privileges, and gain broad control over cloud resources.
+
+
 #### 4. Docker & Container Security Lifecycles
 * **Layer Vulnerabilities:** Docker images inherit vulnerabilities from parent base images (e.g., outdated Linux kernel packages, libraries).
 * **Container Misconfigurations:**
   * **Privileged Mode (`--privileged`):** Disables container isolation, giving container processes direct access to host kernel capabilities and host devices.
   * **Exposed Docker Socket (`/var/run/docker.sock`):** Mounting the Docker daemon socket inside a container allows an attacker to spawn sibling containers with root access directly on the host OS.
+
+  An attacker who gains access to a misconfigured container can exploit weak isolation, privileged mode, or an exposed Docker socket to interact with the host system and potentially gain host-level control.
 
 ---
 
