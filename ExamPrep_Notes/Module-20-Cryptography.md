@@ -13,6 +13,14 @@
   * **Asymmetric Encryption (Public Key):** Uses mathematically linked key pairs—a Public Key for encryption/verification and a Private Key for decryption/signing (e.g., RSA, ECC, Diffie-Hellman, DSA, ElGamal).
   * **Cryptographic Hashing:** One-way mathematical algorithms converting arbitrary-length input into a fixed-length digest. Properties: Deterministic, preimage resistant, second preimage resistant, collision resistant (e.g., SHA-2, SHA-3, MD5, SHA-1).
 
+  # Cryptographic Hash Properties
+
+* **Deterministic:** Same input always yields the exact same hash output.
+* **Preimage Resistant (One-Way):** Given a hash, you cannot find its original input (protects stored passwords).
+* **Second Preimage Resistant:** Given an input, you cannot find a different input with the same hash (prevents file tampering/spoofing).
+* **Collision Resistant:** You cannot find *any* two unique inputs that share the same hash (protects digital signatures from Birthday Attacks).
+
+
 ---
 
 ## Tier 2: Technical Analysis & Mechanics
