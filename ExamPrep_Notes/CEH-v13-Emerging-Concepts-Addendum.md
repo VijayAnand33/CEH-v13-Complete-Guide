@@ -1,7 +1,6 @@
 # CEH v13 Emerging Concepts & Master Exam Addendum
 
-> **Status:** 🎯 Consolidated Exam Addendum (Post-Tests 2 & 3 Review)  
-> **Source:** Practice Tests 2 & 3, Diagnostic Drills, and Scenario Analysis  
+> **Source:** Practice Tests, Diagnostic Drills, and Scenario Analysis  
 > **Focus:** Modern Attack Surface, Evasion, Cloud, AD Infrastructure, Protocols & Edge Cases  
 
 ---
