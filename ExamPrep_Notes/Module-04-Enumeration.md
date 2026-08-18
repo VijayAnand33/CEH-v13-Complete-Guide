@@ -6,16 +6,75 @@
   * *Reconnaissance:* Passive or non-intrusive target mapping.
   * *Scanning:* Identifying live hosts, open ports, and service types.
   * *Enumeration:* Intrusion-adjacent active queries against open ports to reveal specific resource identifiers, internal usernames, Active Directory trees, and system parameters.
-* **Target Protocol Vectors & Listening Ports:**
-  * **NetBIOS Name Service:** Port `137` (UDP)
-  * **NetBIOS Session Service / SMB:** Ports `139` (TCP) & `445` (TCP)
-  * **SNMP (Simple Network Management Protocol):** Port `161` (UDP Probe) & Port `162` (UDP Trap)
-  * **LDAP / LDAPS:** Port `389` (TCP/UDP) / Port `636` (SSL/TLS TCP)
-  * **Global Catalog (Active Directory):** Port `3268` (TCP) / Port `3269` (SSL TCP)
-  * **RPC / Portmapper:** Port `111` (TCP/UDP) & Port `135` (TCP)
-  * **DNS Zone Transfers:** Port `53` (TCP)
-  * **SMTP:** Ports `25`, `465`, `587` (TCP)
-  * **NFS (Network File System):** Ports `2049` (TCP/UDP) & `111` (RPC)
+  
+# Target Protocol Vectors & Listening Ports
+
+## NetBIOS & SMB (File/Printer Sharing)
+
+### Port 137 (UDP) - NetBIOS Name Service
+* Use: Translates human-readable names to IP addresses on local Windows networks.
+* Work: Acts like local DNS; hosts broadcast queries to map names to IPs.
+
+### Port 139 (TCP) - NetBIOS Session Service
+* Use: Manages legacy connection-oriented sessions between Windows machines.
+* Work: Creates a reliable session layer for older file and printer sharing protocols.
+
+### Port 445 (TCP) - SMB (Server Message Block)
+* Use: Modern file sharing, printer sharing, and remote management over IP.
+* Work: Bypasses NetBIOS to transport files directly and execute remote commands.
+
+## SNMP (Network Management)
+
+### Port 161 (UDP) - SNMP Probe
+* Use: Monitoring and managing network devices like routers, switches, and servers.
+* Work: The management console polls the device agent using Request/Response packets.
+
+### Port 162 (UDP) - SNMP Trap
+* Use: Asynchronous alerting for critical network events like high CPU usage.
+* Work: The managed device actively pushes unprompted alerts to the management server.
+
+## LDAP & Global Catalog (Active Directory/Directory Services)
+
+### Port 389 (TCP/UDP) - LDAP
+* Use: Querying and modifying directory services including users, passwords, and permissions.
+* Work: Unencrypted or StartTLS-based search requests targeting the local domain controller.
+
+### Port 636 (TCP) - LDAPS
+* Use: Secure directory lookups and credential validation.
+* Work: Automatically wraps all LDAP directory communication inside an SSL/TLS tunnel.
+
+### Port 3268 (TCP) - Global Catalog
+* Use: Searching for objects across an entire multi-domain Active Directory forest.
+* Work: Acts as a central index; aggregates lookups so clients do not query every sub-domain.
+
+### Port 3269 (TCP) - Global Catalog (SSL)
+* Use: Secure, cross-domain Active Directory forest searches.
+* Work: Encrypts multi-domain directory indexes and lookups using SSL/TLS.
+
+## RPC & Portmapper (Remote Execution)
+
+### Port 111 (TCP/UDP) - RPC / Portmapper (Linux/Unix)
+* Use: Mapping dynamic port assignments for UNIX RPC services like NFS.
+* Work: Client asks Portmapper where a service is hiding; Portmapper returns the actual port.
+
+### Port 135 (TCP) - Microsoft RPC / Endpoint Mapper
+* Use: Locating dynamic endpoints for Windows services like DCOM and WMI.
+* Work: Directs incoming remote administration traffic to its dynamically allocated target port.
+
+## DNS, SMTP, & NFS (Infrastructure Services)
+
+### Port 53 (TCP) - DNS Zone Transfers
+* Use: Replicating the entire domain database between primary and secondary DNS servers.
+* Work: Establishes a reliable TCP stream to dump full zone files across servers.
+
+### Ports 25, 465, 587 (TCP) - SMTP
+* Use: Electronic mail transmission across networks.
+* Work: Port 25 handles server-to-server routing, port 587 handles secure client submission with STARTTLS, and port 465 handles legacy implicit SSL submission.
+
+### Port 2049 (TCP/UDP) - NFS (Network File System)
+* Use: Linux and Unix network file sharing.
+* Work: Mounts a remote directory directly into the local operating system file tree.
+
 
 ---
 
