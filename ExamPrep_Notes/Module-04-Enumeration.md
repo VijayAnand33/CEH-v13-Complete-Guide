@@ -75,8 +75,7 @@
 * Use: Linux and Unix network file sharing.
 * Work: Mounts a remote directory directly into the local operating system file tree.
 
-
----
+----
 
 ## Tier 2: Technical Analysis & Mechanics
 
