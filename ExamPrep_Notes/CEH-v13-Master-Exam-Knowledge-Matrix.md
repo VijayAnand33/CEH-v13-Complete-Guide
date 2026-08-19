@@ -1,7 +1,4 @@
-# CEH v13 Master Exam Knowledge Matrix & Attack Chain Architecture (Complete 6-Test Exhaustive Synthesis)
-
-> **Document Scope:** Full, line-by-line synthesis across Practice Tests 1, 2, 3, 4, 5, and 6 (675 Questions).  
-> **Repository Format:** Strict GitHub-Flavored Markdown (GFM). Zero omitted terms, tools, flags, CVEs, ports, or detection artifacts.
+# CEH v13 Master Exam Knowledge Matrix & Attack Chain Architecture
 
 ---
 
