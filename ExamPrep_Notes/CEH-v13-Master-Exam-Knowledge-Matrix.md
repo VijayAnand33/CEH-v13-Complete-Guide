@@ -80,6 +80,7 @@
 [Tier 3: Resource Consumption]
   Client ─── 5. AP-REQ (Presents Service Ticket TGS directly) ────► Target Service Server (e.g., MSSQL / SMB)
          ◄── 6. AP-REP (Access Granted to target application) ─────┘
+```
 
 ### Kerberos Ticket & Attack Mapping
 
