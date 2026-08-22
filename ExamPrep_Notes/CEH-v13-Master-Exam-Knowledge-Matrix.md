@@ -66,6 +66,21 @@
 * Extracts the `krbtgt` NTLM hash.
 * Forges a Golden Ticket (valid up to 10 years): `kerberos::golden /user:Administrator /domain:corp.local /sid:S-1-5-21-... /krbtgt:[NTLM_HASH] /id:500 /ptt`.
 
+### Kerberos Authentication Flow & Ticket Hierarchy
+
+```text
+[Tier 1: Identity Proof]
+  Client ─── 1. AS-REQ (Username + Encrypted Timestamp) ───► Key Distribution Center (KDC / Port 88)
+         ◄── 2. AS-REP (Returns Master TGT encrypted with KRBTGT hash) ─┘
+
+[Tier 2: Service Authorization]
+  Client ─── 3. TGS-REQ (Presents TGT + Requests access to SPN) ──► Key Distribution Center (KDC / Port 88)
+         ◄── 4. TGS-REP (Returns Service Ticket TGS encrypted with Service Account hash) ─┘
+
+[Tier 3: Resource Consumption]
+  Client ─── 5. AP-REQ (Presents Service Ticket TGS directly) ────► Target Service Server (e.g., MSSQL / SMB)
+         ◄── 6. AP-REP (Access Granted to target application) ─────┘
+
 ### Kerberos Ticket & Attack Mapping
 
 | Attack Vector | Target Ticket / Protocol Phase | Target Account / Hash Used | Vulnerability / Root Cause | Operational Mechanism & High-Yield Command Hook | Event ID / Detection Hook | Remediation / Defense |
