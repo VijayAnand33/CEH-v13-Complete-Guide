@@ -108,9 +108,8 @@
 
 ## Attack Chain 3: Web Supply Chain, Kubernetes Breakout & Kernel Exploitation
 
-```text
 [Phase 1: Supply Chain & Initial Foothold]
-Typosquatted Dependency (python:3.11-s1im / PyPI) ──> Prototype Pollution in Node.js (Object.prototype)
+Typosquatted Dependency (python:3.11-s1im) ──> Prototype Pollution in Node.js (Object.prototype)
                                                                 │
                                               RCE inside Pod Container (child_process.spawn)
 
@@ -120,31 +119,34 @@ Attacker dumps ServiceAccount Token ────────► Abuses Misconfig
                                               Dumps all K8s Secrets (kubectl get secrets -A -o yaml)
 
 [Phase 3: Container Breakout to Host Node]
-Option A: Deploy Privileged Pod mounting Host root filesystem ('/')
+Option A: Deploy Privileged Pod mounting Host root filesystem ('/') via API Server
 Option B: Overwrite Host runc Binary via /proc/self/exe (CVE-2019-5736)
 Option C: Overwrite Host Kernel Page Cache via Dirty Pipe (CVE-2022-0847)
                                     │
                     Full Root on Kubernetes Worker Node
 
-```
+## Supply Chain Compromise
+- Exploits a typo-squatted package (python:3.11-s1im or trojanized PyPI/npm dependency) pulling in malicious code during container build.
 
-### Supply Chain Compromise
-* Exploits a typo-squatted package (`python:3.11-s1im` or trojanized PyPI/npm dependency) pulling in malicious code during container build.
+## Server-Side Prototype Pollution to RCE
+- Injects properties into Object.prototype via an unvalidated merge function to poison child_process.spawn options, establishing an interactive shell inside a container pod.
 
-### Server-Side Prototype Pollution to RCE
-* Injects properties into `Object.prototype` via an unvalidated merge function to poison `child_process.spawn` options, establishing an interactive shell inside a container pod.
+## Kubernetes API Server Escalation & Reconnaissance
+- Extracts the service account token mounted at `/var/run/secrets/kubernetes.io/serviceaccount/token`.
+- Enumerates permissions using `kubectl auth can-i --list`.
+- Discovers the service account is bound to `cluster-admin` via a misconfigured `ClusterRoleBinding`.
+- Harvests cluster data: `kubectl get secrets -A -o yaml`.
 
-### Kubernetes API Server Escalation & Container Escape
-* Extracts the service account token mounted at `/var/run/secrets/kubernetes.io/serviceaccount/token`.
-* Enumerates permissions: `kubectl auth can-i --list`.
-* Discovers the service account is bound to `cluster-admin` via a misconfigured `ClusterRoleBinding`.
-* Enumerates secrets: `kubectl get secrets -A -o yaml`.
-* Deploys a privileged container mounting the host root filesystem (`/`) or executes Dirty Pipe (CVE-2022-0847) / runc binary overwrite (CVE-2019-5736) via `/proc/self/exe` to break out to the host node.
+## Container Breakout & Host Takeover Vectors
+- **Privileged Pod Deployment:** Uses high-level API access to create a new pod with `securityContext.privileged: true` and a `hostPath` volume mount mapping the host's root filesystem (`/`).
+- **runc Binary Overwrite (CVE-2019-5736):** If the attacker has access to a container process, they write to `/proc/self/exe` to overwrite the host's `runc` binary, executing arbitrary commands on the host when a new container is spawned.
+- **Kernel Exploitation (Dirty Pipe - CVE-2022-0847):** Exploits unpatched kernel page cache vulnerabilities to rewrite root-owned files on the underlying node.
 
-### Root-Cause Mitigations
-* Enforce image digest pinning (`python@sha256:...`) and Sigstore/Cosign signature verification in admission controllers.
-* Set `automountServiceAccountToken: false` on pods that do not interact with the Kubernetes API.
-* Enforce Pod Security Admission (PSA) at restricted profile in enforce mode.
+## Root-Cause Mitigations
+- Enforce image digest pinning (`python@sha256:...`) and Sigstore/Cosign signature verification in admission controllers.
+- Set `automountServiceAccountToken: false` on pods that do not interact with the Kubernetes API.
+- Enforce Pod Security Admission (PSA) at `restricted` profile in `enforce` mode.
+- Restrict RBAC permissions following the Principle of Least Privilege (PoLP); avoid over-provisioning `ClusterRoleBindings`.
 
 ---
 
