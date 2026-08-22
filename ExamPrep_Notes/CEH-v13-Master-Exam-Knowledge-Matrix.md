@@ -108,6 +108,26 @@
 
 ## Attack Chain 3: Web Supply Chain, Kubernetes Breakout & Kernel Exploitation
 
+```text
+[Phase 1: Supply Chain & Initial Foothold]
+Typosquatted Dependency (python:3.11-s1im / PyPI) ──> Prototype Pollution in Node.js (Object.prototype)
+                                                                │
+                                              RCE inside Pod Container (child_process.spawn)
+
+[Phase 2: Cluster Privilege Escalation]
+Attacker dumps ServiceAccount Token ────────► Abuses Misconfigured ClusterRoleBinding (cluster-admin)
+(/var/run/secrets/.../token)                                    │
+                                              Dumps all K8s Secrets (kubectl get secrets -A -o yaml)
+
+[Phase 3: Container Breakout to Host Node]
+Option A: Deploy Privileged Pod mounting Host root filesystem ('/')
+Option B: Overwrite Host runc Binary via /proc/self/exe (CVE-2019-5736)
+Option C: Overwrite Host Kernel Page Cache via Dirty Pipe (CVE-2022-0847)
+                                    │
+                    Full Root on Kubernetes Worker Node
+
+```
+
 ### Supply Chain Compromise
 * Exploits a typo-squatted package (`python:3.11-s1im` or trojanized PyPI/npm dependency) pulling in malicious code during container build.
 
